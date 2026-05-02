@@ -266,7 +266,7 @@ onValue(ref(db, 'adventures'), (snapshot) => {
   const data = snapshot.val();
   if(!data) return;
   
-  let localAdvs = JSON.parse(localStorage.getItem('advs') || '[]');
+  let localAdvs = JSON.parse(localStorage.getItem('dnd_adventures') || '[]');
   
   Object.values(data).forEach(fbAdv => {
     const idx = localAdvs.findIndex(a => a.id === fbAdv.id);
@@ -277,7 +277,7 @@ onValue(ref(db, 'adventures'), (snapshot) => {
     }
   });
   
-  localStorage.setItem('advs', JSON.stringify(localAdvs));
+  localStorage.setItem('dnd_adventures', JSON.stringify(localAdvs));
   
   // Re-render seulement si on est sur la home
   if(typeof renderHome === 'function' && !currentAdv){
@@ -401,6 +401,7 @@ async function renderHome(){
       </div>
     </div>`).join('');
 }
+window.renderHome = renderHome;
 
 function goHome(){
   isGM=false;
