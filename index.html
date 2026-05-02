@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Chroniques des Royaumes — JDR</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
+:root {
+  --ink:#1a1410;--parch:#f5eedc;--parch2:#ede0c0;--parch3:#ddd0a8;
+  --blood:#8b1a1a;--blood2:#c0392b;--gold:#a07830;--gold2:#c8982a;
+  --shadow:rgba(26,20,16,0.18);--border:rgba(140,100,40,0.28);
+  --text:#2c2218;--text2:#6b4f30;--text3:#9c7a50;
+  --bg-card:rgba(245,238,220,0.92);--radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{
+  background:#0e0b06;
+  background-image:
+    radial-gradient(ellipse at 20% 20%,rgba(80,40,10,0.4) 0%,transparent 60%),
+    radial-gradient(ellipse at 80% 80%,rgba(60,20,10,0.35) 0%,transparent 55%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  min-height:100vh;
+  font-family:'Crimson Pro',Georgia,serif;
+  color:var(--text);
+  padding-bottom:40px;
+}
+.header{
+  text-align:center;padding:40px 20px 28px;
+  position:relative;
+}
+.header::after{
+  content:'';display:block;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:18px auto 0;max-width:340px;
+}
+.title-rune{
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:10px;font-family:'Cinzel',serif;font-weight:400;
+}
+h1{
+  font-family:'Cinzel',serif;font-size:clamp(26px,6vw,38px);
+  font-weight:700;color:var(--parch);
+  text-shadow:0 2px 12px rgba(160,120,40,0.4);
+  letter-spacing:.04em;line-height:1.15;
+}
+h1 span{color:var(--gold2);}
+.sub{color:var(--parch3);font-style:italic;font-size:15px;margin-top:6px;}
+
+/* Main layout */
+.container{max-width:540px;margin:0 auto;padding:0 16px;}
+
+/* Cards */
+.card{
+  background:var(--bg-card);
+  border:0.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:20px;margin-bottom:14px;
+  box-shadow:0 4px 24px var(--shadow);
+  position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+
+.sec{
+  font-family:'Cinzel',serif;font-size:11px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--blood);
+  margin-bottom:14px;padding-bottom:10px;
+  border-bottom:0.5px solid var(--border);
+  display:flex;align-items:center;gap:8px;
+}
+.sec::before{content:'✦';font-size:9px;opacity:.7;}
+
+/* Form elements */
+.f{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
+.f:last-child{margin-bottom:0;}
+.f label{font-size:11px;color:var(--text2);letter-spacing:.07em;text-transform:uppercase;font-family:'Cinzel',serif;}
+.f input,.f select,.f textarea{
+  font-size:15px;font-family:'Crimson Pro',serif;
+  background:rgba(255,255,255,0.5);border:0.5px solid var(--border);
+  border-radius:7px;padding:9px 12px;color:var(--text);width:100%;
+  -webkit-appearance:none;appearance:none;
+}
+.f input:focus,.f select:focus,.f textarea:focus{
+  outline:none;border-color:var(--gold);
+  background:rgba(255,255,255,0.75);
+}
+.f input[type=password]::placeholder{letter-spacing:.1em;}
+
+/* Buttons */
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:13px 20px;border-radius:8px;
+  font-family:'Cinzel',serif;font-size:13px;font-weight:600;
+  letter-spacing:.08em;cursor:pointer;border:none;
+  transition:all .18s;text-transform:uppercase;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--blood) 0%,var(--blood2) 100%);
+  color:#fff;box-shadow:0 2px 12px rgba(139,26,26,0.35);
+}
+.btn-primary:active{transform:scale(.97);}
+.btn-ghost{
+  background:transparent;border:0.5px solid var(--border);
+  color:var(--text2);
+}
+.btn-ghost:active{background:rgba(140,100,40,.08);}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 100%);
+  color:#fff;box-shadow:0 2px 12px rgba(160,120,40,0.3);
+}
+.btn-gold:active{transform:scale(.97);}
+
+/* Adventure list */
+.adv-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px;background:rgba(255,255,255,0.5);
+  border:0.5px solid var(--border);border-radius:8px;
+  margin-bottom:8px;cursor:pointer;transition:all .15s;
+  gap:12px;
+}
+.adv-item:active{background:rgba(255,255,255,.8);}
+.adv-item:last-child{margin-bottom:0;}
+.adv-left{}
+.adv-name{font-family:'Cinzel',serif;font-size:14px;font-weight:600;color:var(--blood);margin-bottom:3px;}
+.adv-meta{font-size:12px;color:var(--text3);font-style:italic;}
+.adv-arrow{color:var(--gold);font-size:18px;flex-shrink:0;}
+.adv-badge{
+  font-size:10px;font-family:'Cinzel',serif;letter-spacing:.06em;
+  background:rgba(139,26,26,0.1);color:var(--blood);
+  border:0.5px solid rgba(139,26,26,0.2);border-radius:4px;
+  padding:3px 7px;
+}
+
+/* Character list */
+.char-item{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 14px;background:rgba(255,255,255,0.5);
+  border:0.5px solid var(--border);border-radius:8px;
+  margin-bottom:8px;cursor:pointer;transition:all .15s;
+}
+.char-item:active{background:rgba(255,255,255,.8);}
+.char-avatar{
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(139,26,26,0.1);border:0.5px solid rgba(139,26,26,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.char-info{flex:1;}
+.char-name{font-family:'Cinzel',serif;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.char-sub{font-size:12px;color:var(--text3);font-style:italic;}
+.char-lock{color:var(--text3);font-size:14px;}
+
+/* Overlay modal */
+.overlay{
+  position:fixed;inset:0;background:rgba(10,7,3,.85);
+  display:flex;align-items:center;justify-content:center;
+  z-index:200;padding:20px;opacity:0;pointer-events:none;
+  transition:opacity .2s;
+}
+.overlay.show{opacity:1;pointer-events:all;}
+.modal{
+  background:var(--parch);border:0.5px solid var(--border);
+  border-radius:14px;padding:24px;width:100%;max-width:380px;
+  box-shadow:0 12px 48px rgba(0,0,0,0.6);
+  transform:translateY(20px);transition:transform .2s;
+}
+.overlay.show .modal{transform:translateY(0);}
+.modal-title{
+  font-family:'Cinzel',serif;font-size:16px;font-weight:700;
+  color:var(--blood);margin-bottom:16px;text-align:center;
+}
+.modal-close{
+  position:absolute;top:14px;right:16px;
+  font-size:20px;color:var(--text3);background:none;border:none;
+  cursor:pointer;width:32px;height:32px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:6px;
+}
+.modal-close:active{background:rgba(139,26,26,.1);}
+.modal{position:relative;}
+
+.err{
+  background:rgba(200,30,30,.1);border:0.5px solid rgba(200,30,30,.3);
+  border-radius:7px;padding:10px 13px;color:#8b1a1a;
+  font-size:13px;margin-bottom:12px;display:none;
+}
+.err.show{display:block;}
+
+.divider{
+  display:flex;align-items:center;gap:10px;margin:14px 0;
+  color:var(--text3);font-size:11px;font-family:'Cinzel',serif;letter-spacing:.1em;
+}
+.divider::before,.divider::after{content:'';flex:1;height:0.5px;background:var(--border);}
+
+.tag-gm{
+  font-size:10px;font-family:'Cinzel',serif;
+  background:rgba(160,120,40,0.15);color:var(--gold);
+  border:0.5px solid rgba(160,120,40,.3);border-radius:4px;
+  padding:2px 6px;margin-left:6px;
+}
+
+.empty-state{
+  text-align:center;padding:28px 16px;color:var(--text3);
+  font-style:italic;font-size:14px;
+}
+
+/* Export zone */
+.export-box{
+  background:rgba(0,0,0,.06);border-radius:7px;
+  padding:10px 12px;font-size:11px;font-family:monospace;
+  color:var(--text2);word-break:break-all;line-height:1.5;
+  max-height:80px;overflow-y:auto;margin:10px 0;
+}
+
+/* Sections screen management */
+.screen{display:none;}
+.screen.active{display:block;}
+
+.back-btn{
+  display:flex;align-items:center;gap:6px;
+  color:var(--text3);font-size:13px;font-family:'Cinzel',serif;
+  letter-spacing:.05em;background:none;border:none;cursor:pointer;
+  padding:4px 0;margin-bottom:16px;
+}
+.back-btn:active{color:var(--blood);}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+.hint{font-size:12px;color:var(--text3);font-style:italic;margin-top:4px;}
+
+.sync-banner{
+  background:rgba(160,120,40,0.12);border:0.5px solid rgba(160,120,40,.3);
+  border-radius:8px;padding:10px 14px;margin-bottom:12px;
+  font-size:12px;color:var(--gold);font-family:'Cinzel',serif;
+  letter-spacing:.04em;text-align:center;display:none;
+}
+.sync-banner.show{display:block;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="title-rune">Chroniques des Royaumes</div>
+  <h1>Fiches de <span>Personnage</span></h1>
+  <p class="sub">Gestionnaire d'aventures JDR</p>
+</div>
+
+<div class="container">
+
+  <!-- SCREEN: ADVENTURES LIST -->
+  <div class="screen active" id="screen-home">
+    <div class="card">
+      <div class="sec">Aventures</div>
+      <div id="adv-list"><div class="empty-state">Aucune aventure créée. Commence une nouvelle quête !</div></div>
+    </div>
+    <button class="btn btn-primary" onclick="showModal('modal-create-adv')">
+      ✦ &nbsp;Créer une nouvelle aventure
+    </button>
+    <div style="height:10px"></div>
+    <button class="btn btn-ghost" onclick="showModal('modal-import')">
+      ↓ &nbsp;Importer une aventure
+    </button>
+  </div>
+
+  <!-- SCREEN: ADVENTURE VIEW (character list) -->
+  <div class="screen" id="screen-adventure">
+    <button class="back-btn" onclick="goHome()">← Retour aux aventures</button>
+    <div class="card">
+      <div class="sec" id="adv-screen-name">Aventure</div>
+      <div id="char-list"><div class="empty-state">Aucun personnage. Le MJ peut en créer depuis le panneau MJ.</div></div>
+    </div>
+    <button class="btn btn-primary" id="btn-add-char" style="display:none;margin-bottom:10px" onclick="goCreateChar()">
+      + &nbsp;Ajouter un personnage
+    </button>
+    <div class="divider">Maître du Jeu</div>
+    <button class="btn btn-gold" onclick="showGMLogin()">⚔ &nbsp;Panneau MJ</button>
+    <div style="height:10px"></div>
+    <button class="btn btn-ghost" onclick="showExport()">↑ &nbsp;Exporter l'aventure</button>
+  </div>
+
+  <!-- SCREEN: CREATE CHARACTER -->
+  <div class="screen" id="screen-create-char">
+    <button class="back-btn" onclick="goAdventure()">← Retour à l'aventure</button>
+    <div class="card">
+      <div class="sec">Nouveau personnage</div>
+      <div class="grid-2">
+        <div class="f"><label>Prénom</label><input type="text" id="new-prenom" placeholder="Arawen"></div>
+        <div class="f"><label>Nom</label><input type="text" id="new-nom" placeholder="Cendrevif"></div>
+      </div>
+      <div class="grid-2">
+        <div class="f">
+          <label>Race</label>
+          <select id="new-race">
+            <option value="">—</option><option>Humain</option><option>Elfe</option><option>Nain</option>
+            <option>Halfelin</option><option>Gnome</option><option>Semi-orque</option>
+            <option>Tieffelin</option><option>Draconique</option><option>Aasimar</option><option>Autre</option>
+          </select>
+        </div>
+        <div class="f">
+          <label>Classe</label>
+          <select id="new-classe">
+            <option value="">—</option><option>Guerrier</option><option>Mage</option><option>Rôdeur</option>
+            <option>Voleur</option><option>Paladin</option><option>Clerc</option><option>Barde</option>
+            <option>Druide</option><option>Moine</option><option>Sorcier</option><option>Autre</option>
+          </select>
+        </div>
+      </div>
+      <div class="f">
+        <label>Mot de passe joueur</label>
+        <input type="password" id="new-mdp" placeholder="••••••••" autocomplete="new-password">
+        <div class="hint">Le joueur utilisera ce mdp pour accéder à sa fiche.</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="createChar()">Créer le personnage</button>
+  </div>
+
+</div><!-- /container -->
+
+<!-- MODALS -->
+
+<!-- Create Adventure -->
+<div class="overlay" id="modal-create-adv">
+  <div class="modal">
+    <button class="modal-close" onclick="hideModal('modal-create-adv')">✕</button>
+    <div class="modal-title">✦ Nouvelle Aventure</div>
+    <div class="err" id="err-create-adv"></div>
+    <div class="f"><label>Nom de l'aventure</label><input type="text" id="adv-name-inp" placeholder="La Crypte des Anciens…"></div>
+    <div class="f">
+      <label>Mot de passe MJ</label>
+      <input type="password" id="adv-mdp-inp" placeholder="••••••••" autocomplete="new-password">
+      <div class="hint">Ce mdp permet au MJ d'accéder à toutes les fiches.</div>
+    </div>
+    <div style="height:12px"></div>
+    <button class="btn btn-primary" onclick="createAdventure()">Créer l'aventure</button>
+  </div>
+</div>
+
+<!-- Player Login -->
+<div class="overlay" id="modal-player-login">
+  <div class="modal">
+    <button class="modal-close" onclick="hideModal('modal-player-login')">✕</button>
+    <div class="modal-title" id="player-login-title">Accès Personnage</div>
+    <div class="err" id="err-player-login"></div>
+    <div class="f">
+      <label>Mot de passe</label>
+      <input type="password" id="player-login-mdp" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkPlayerLogin()">
+    </div>
+    <div style="height:8px"></div>
+    <button class="btn btn-primary" onclick="checkPlayerLogin()">Ouvrir la fiche</button>
+  </div>
+</div>
+
+<!-- GM Login -->
+<div class="overlay" id="modal-gm-login">
+  <div class="modal">
+    <button class="modal-close" onclick="hideModal('modal-gm-login')">✕</button>
+    <div class="modal-title">⚔ Panneau MJ</div>
+    <div class="err" id="err-gm-login"></div>
+    <div class="f">
+      <label>Mot de passe MJ</label>
+      <input type="password" id="gm-login-mdp" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkGMLogin()">
+    </div>
+    <div style="height:8px"></div>
+    <button class="btn btn-gold" onclick="checkGMLogin()">Accéder</button>
+  </div>
+</div>
+
+<!-- Export -->
+<div class="overlay" id="modal-export">
+  <div class="modal">
+    <button class="modal-close" onclick="hideModal('modal-export')">✕</button>
+    <div class="modal-title">↑ Exporter l'aventure</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:10px;font-style:italic;">Copie ce code et partage-le avec tes joueurs pour qu'ils importent l'aventure sur leur téléphone.</p>
+    <div class="export-box" id="export-data"></div>
+    <button class="btn btn-primary" onclick="copyExport()">Copier le code</button>
+    <div style="margin-top:8px;font-size:11px;color:var(--text3);text-align:center;font-style:italic;" id="copy-confirm"></div>
+  </div>
+</div>
+
+<!-- Import -->
+<div class="overlay" id="modal-import">
+  <div class="modal">
+    <button class="modal-close" onclick="hideModal('modal-import')">✕</button>
+    <div class="modal-title">↓ Importer une aventure</div>
+    <div class="err" id="err-import"></div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:10px;font-style:italic;">Colle ici le code donné par ton MJ.</p>
+    <div class="f"><textarea id="import-data" style="min-height:90px;font-family:monospace;font-size:11px" placeholder="Colle le code ici…"></textarea></div>
+    <button class="btn btn-primary" onclick="doImport()">Importer</button>
+  </div>
+</div>
+
+<script>
+/* ====== STATE ====== */
+let currentAdv = null;  // adventure id
+let isGM = false;
+let selectedChar = null;
+
+const EMOJIS = {
+  Guerrier:'⚔️',Mage:'🔮','Rôdeur':'🏹',Voleur:'🗡️',Paladin:'🛡️',
+  Clerc:'✝️',Barde:'🎶',Druide:'🌿',Moine:'🥋',Sorcier:'📜',
+  Humain:'🧑',Elfe:'🧝',Nain:'⛏️',Halfelin:'🌿',Gnome:'🔬',
+  'Semi-orque':'💪',Tieffelin:'😈',Draconique:'🐉',Aasimar:'✨'
+};
+
+/* ====== STORAGE ====== */
+function getAdventures(){return JSON.parse(localStorage.getItem('dnd_adventures')||'[]');}
+function saveAdventures(a){localStorage.setItem('dnd_adventures',JSON.stringify(a));}
+function getAdv(id){return getAdventures().find(a=>a.id===id)||null;}
+function saveAdv(adv){
+  const list=getAdventures();
+  const i=list.findIndex(a=>a.id===adv.id);
+  if(i>=0)list[i]=adv; else list.push(adv);
+  saveAdventures(list);
+}
+function hashStr(s){
+  // simple hash (not crypto, but keeps parity for this use case)
+  let h=0;for(let i=0;i<s.length;i++){h=Math.imul(31,h)+s.charCodeAt(i)|0;}
+  return h.toString(16);
+}
+
+/* ====== UI HELPERS ====== */
+function showModal(id){document.getElementById(id).classList.add('show');}
+function hideModal(id){document.getElementById(id).classList.remove('show');}
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function showErr(id,msg){const e=document.getElementById(id);e.textContent=msg;e.classList.add('show');}
+function hideErr(id){document.getElementById(id).classList.remove('show');}
+
+/* ====== HOME ====== */
+function renderHome(){
+  const list=getAdventures();
+  const el=document.getElementById('adv-list');
+  if(!list.length){el.innerHTML='<div class="empty-state">Aucune aventure créée. Commence une nouvelle quête !</div>';return;}
+  el.innerHTML=list.map(a=>`
+    <div class="adv-item" onclick="selectAdventure('${a.id}')">
+      <div class="adv-left">
+        <div class="adv-name">${a.name}</div>
+        <div class="adv-meta">${a.chars.length} personnage${a.chars.length!==1?'s':''} · créée le ${a.created}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="adv-badge">${a.chars.length} joueur${a.chars.length!==1?'s':''}</span>
+        <span class="adv-arrow">›</span>
+      </div>
+    </div>`).join('');
+}
+
+function goHome(){
+  isGM=false;currentAdv=null;
+  showScreen('screen-home');
+  renderHome();
+}
+
+/* ====== ADVENTURE ====== */
+function createAdventure(){
+  hideErr('err-create-adv');
+  const name=document.getElementById('adv-name-inp').value.trim();
+  const mdp=document.getElementById('adv-mdp-inp').value;
+  if(!name){showErr('err-create-adv','Donne un nom à l\'aventure.');return;}
+  if(mdp.length<3){showErr('err-create-adv','Le mot de passe MJ doit faire au moins 3 caractères.');return;}
+  const adv={
+    id:'adv_'+Date.now(),
+    name,
+    mdpHash:hashStr(mdp),
+    created:new Date().toLocaleDateString('fr-FR'),
+    chars:[]
+  };
+  saveAdv(adv);
+  hideModal('modal-create-adv');
+  document.getElementById('adv-name-inp').value='';
+  document.getElementById('adv-mdp-inp').value='';
+  renderHome();
+}
+
+function selectAdventure(id){
+  currentAdv=id;
+  isGM=false;
+  renderAdventure();
+  showScreen('screen-adventure');
+}
+
+function renderAdventure(){
+  const adv=getAdv(currentAdv);
+  if(!adv)return;
+  document.getElementById('adv-screen-name').textContent=adv.name;
+  document.getElementById('btn-add-char').style.display=isGM?'flex':'none';
+  const el=document.getElementById('char-list');
+  if(!adv.chars.length){
+    el.innerHTML='<div class="empty-state">Aucun personnage. Le MJ peut en créer depuis le panneau MJ.</div>';
+    return;
+  }
+  el.innerHTML=adv.chars.map(c=>{
+    const emoji=EMOJIS[c.classe]||EMOJIS[c.race]||'⚔️';
+    const gmTag=isGM?`<span class="tag-gm">MJ</span>`:'';
+    return `<div class="char-item" onclick="openChar('${c.id}')">
+      <div class="char-avatar">${emoji}</div>
+      <div class="char-info">
+        <div class="char-name">${c.prenom} ${c.nom}${gmTag}</div>
+        <div class="char-sub">${c.race||'Race inconnue'} · ${c.classe||'Classe inconnue'}</div>
+      </div>
+      <div class="char-lock">${isGM?'✓':'🔒'}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ====== GM ====== */
+function showGMLogin(){
+  hideErr('err-gm-login');
+  document.getElementById('gm-login-mdp').value='';
+  showModal('modal-gm-login');
+}
+function checkGMLogin(){
+  const adv=getAdv(currentAdv);
+  const mdp=document.getElementById('gm-login-mdp').value;
+  if(hashStr(mdp)===adv.mdpHash){
+    isGM=true;
+    hideModal('modal-gm-login');
+    renderAdventure();
+  } else {
+    showErr('err-gm-login','Mot de passe incorrect.');
+  }
+}
+
+/* ====== PLAYER LOGIN ====== */
+function openChar(charId){
+  const adv=getAdv(currentAdv);
+  const c=adv.chars.find(x=>x.id===charId);
+  if(!c)return;
+  if(isGM){
+    // GM passes directly
+    window.location.href=`fiche.html?adv=${currentAdv}&char=${charId}&gm=1`;
+    return;
+  }
+  selectedChar=charId;
+  document.getElementById('player-login-title').textContent=`🔒 ${c.prenom} ${c.nom}`;
+  document.getElementById('player-login-mdp').value='';
+  hideErr('err-player-login');
+  showModal('modal-player-login');
+}
+function checkPlayerLogin(){
+  const adv=getAdv(currentAdv);
+  const c=adv.chars.find(x=>x.id===selectedChar);
+  const mdp=document.getElementById('player-login-mdp').value;
+  if(hashStr(mdp)===c.mdpHash){
+    hideModal('modal-player-login');
+    window.location.href=`fiche.html?adv=${currentAdv}&char=${selectedChar}&gm=0`;
+  } else {
+    showErr('err-player-login','Mot de passe incorrect.');
+  }
+}
+
+/* ====== CREATE CHAR ====== */
+function goCreateChar(){showScreen('screen-create-char');}
+function goAdventure(){showScreen('screen-adventure');}
+
+function createChar(){
+  const adv=getAdv(currentAdv);
+  const prenom=document.getElementById('new-prenom').value.trim();
+  const nom=document.getElementById('new-nom').value.trim();
+  const race=document.getElementById('new-race').value;
+  const classe=document.getElementById('new-classe').value;
+  const mdp=document.getElementById('new-mdp').value;
+  if(!prenom){alert('Donne un prénom au personnage.');return;}
+  if(mdp.length<3){alert('Le mot de passe doit faire au moins 3 caractères.');return;}
+  const c={
+    id:'char_'+Date.now(),
+    prenom,nom,race,classe,
+    mdpHash:hashStr(mdp),
+    data:defaultCharData()
+  };
+  adv.chars.push(c);
+  saveAdv(adv);
+  document.getElementById('new-prenom').value='';
+  document.getElementById('new-nom').value='';
+  document.getElementById('new-race').value='';
+  document.getElementById('new-classe').value='';
+  document.getElementById('new-mdp').value='';
+  goAdventure();
+  renderAdventure();
+}
+
+function defaultCharData(){
+  return {
+    age:'',taille:'',sexe:'',attirance:'',alignement:'',
+    peur:'',desir:'',defaut:'',maladie:'',
+    notes_psycho:'',
+    hp_cur:80,hp_max:100,mp_cur:60,mp_max:100,end_cur:70,end_max:100,
+    mental:50,stress:30,niveau:1,vitesse:9,initiative:4,
+    or:0,
+    stats:{Force:10,Puissance:10,Dextérité:10,Constitution:10,Intelligence:10,Perception:10,Charisme:10,Chance:10},
+    subs:{Force:[],Puissance:[],Dextérité:[],Constitution:[],Intelligence:[],Perception:[],Charisme:[],Chance:[]},
+    bio:''
+  };
+}
+
+/* ====== EXPORT / IMPORT ====== */
+function showExport(){
+  const adv=getAdv(currentAdv);
+  const json=JSON.stringify(adv);
+  const encoded=btoa(unescape(encodeURIComponent(json)));
+  document.getElementById('export-data').textContent=encoded;
+  document.getElementById('copy-confirm').textContent='';
+  showModal('modal-export');
+}
+function copyExport(){
+  const txt=document.getElementById('export-data').textContent;
+  navigator.clipboard.writeText(txt).then(()=>{
+    document.getElementById('copy-confirm').textContent='✓ Copié !';
+  }).catch(()=>{
+    document.getElementById('copy-confirm').textContent='Sélectionne le texte et copie manuellement.';
+  });
+}
+function doImport(){
+  hideErr('err-import');
+  const raw=document.getElementById('import-data').value.trim();
+  try{
+    const json=decodeURIComponent(escape(atob(raw)));
+    const adv=JSON.parse(json);
+    if(!adv.id||!adv.name||!adv.chars){throw new Error('Format invalide');}
+    saveAdv(adv);
+    hideModal('modal-import');
+    document.getElementById('import-data').value='';
+    renderHome();
+    alert(`✓ Aventure "${adv.name}" importée !`);
+  }catch(e){
+    showErr('err-import','Code invalide. Vérifie que tu as bien tout copié.');
+  }
+}
+
+/* ====== INIT ====== */
+renderHome();
+</script>
+</body>
+</html>
