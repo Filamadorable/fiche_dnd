@@ -84,7 +84,6 @@ h1 span{color:var(--gold2);}
 .hint{font-size:12px;color:var(--text3);font-style:italic;margin-top:4px;}
 .sync-banner{background:rgba(160,120,40,0.12);border:0.5px solid rgba(160,120,40,.3);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:var(--gold);font-family:'Cinzel',serif;letter-spacing:.04em;text-align:center;display:none;}
 .sync-banner.show{display:block;}
-/* Loading spinner */
 .loading{text-align:center;padding:20px;color:var(--text3);font-style:italic;font-size:13px;}
 .spinner{display:inline-block;width:16px;height:16px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;margin-right:8px;vertical-align:middle;}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -100,7 +99,6 @@ h1 span{color:var(--gold2);}
 
 <div class="container">
 
-  <!-- SCREEN: ADVENTURES LIST -->
   <div class="screen active" id="screen-home">
     <div class="card">
       <div class="sec">Aventures</div>
@@ -111,7 +109,6 @@ h1 span{color:var(--gold2);}
     <button class="btn btn-ghost" onclick="showModal('modal-import')">↓ &nbsp;Importer une aventure</button>
   </div>
 
-  <!-- SCREEN: ADVENTURE VIEW -->
   <div class="screen" id="screen-adventure">
     <button class="back-btn" onclick="goHome()">← Retour aux aventures</button>
     <div class="sync-banner" id="sync-banner">✦ Fiche mise à jour en temps réel</div>
@@ -126,7 +123,6 @@ h1 span{color:var(--gold2);}
     <button class="btn btn-ghost" onclick="showExport()">↑ &nbsp;Exporter l'aventure</button>
   </div>
 
-  <!-- SCREEN: CREATE CHARACTER -->
   <div class="screen" id="screen-create-char">
     <button class="back-btn" onclick="goAdventure()">← Retour à l'aventure</button>
     <div class="card">
@@ -232,55 +228,53 @@ h1 span{color:var(--gold2);}
 </div>
 
 <script type="module">
-/* ====== FIREBASE CONFIG ======
-   Remplace ces valeurs par celles de ta console Firebase
-   console.firebase.google.com → Ton projet → Project Settings → Your apps
-   =============================== */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getDatabase, ref, set, get, onValue, off }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 const firebaseConfig = {
-
   apiKey: "AIzaSyAlSYMROZzGvAe_PbKYtIyO_n0mJcHE8ec",
-
   authDomain: "fiche-dnd.firebaseapp.com",
-
   databaseURL: "https://fiche-dnd-default-rtdb.europe-west1.firebasedatabase.app",
-
   projectId: "fiche-dnd",
-
   storageBucket: "fiche-dnd.firebasestorage.app",
-
   messagingSenderId: "2067270488",
-
   appId: "1:2067270488:web:98e242ec19664c5292f32d"
-
 };
 
 const app = initializeApp(firebaseConfig);
 const db  = getDatabase(app);
 
+// ← CORRECTION PRINCIPALE : normalise chars à [] si absent avant tout traitement
+function normalizeAdv(adv){
+  if(!adv) return adv;
+  if(!adv.chars) adv.chars = [];
+  return adv;
+}
+
 // Écoute temps réel toutes les aventures
 onValue(ref(db, 'adventures'), (snapshot) => {
   const data = snapshot.val();
   if(!data) return;
-
   let localAdvs = JSON.parse(localStorage.getItem('dnd_adventures') || '[]');
   Object.values(data).forEach(fbAdv => {
+    fbAdv = normalizeAdv(fbAdv); // ← normalize ici
     const idx = localAdvs.findIndex(a => a.id === fbAdv.id);
     if(idx === -1) localAdvs.push(fbAdv);
     else localAdvs[idx] = fbAdv;
   });
   localStorage.setItem('dnd_adventures', JSON.stringify(localAdvs));
-
+  // Si on est sur l'écran home, on re-render
+  if(document.getElementById('screen-home').classList.contains('active')){
+    renderHome();
+  }
 });
 
 /* ====== STATE ====== */
-let currentAdv  = null;
-let isGM        = false;
+let currentAdv   = null;
+let isGM         = false;
 let selectedChar = null;
-let watchUnsubscribe = null; // pour stopper le listener Firebase
+let watchUnsubscribe = null;
 
 const EMOJIS = {
   Guerrier:'⚔️',Mage:'🔮','Rôdeur':'🏹',Voleur:'🗡️',Paladin:'🛡️',
@@ -296,7 +290,7 @@ function hashStr(s){
   return h.toString(36);
 }
 
-/* ====== LOCAL STORAGE (cache) ====== */
+/* ====== LOCAL STORAGE ====== */
 function getAdventures(){return JSON.parse(localStorage.getItem('dnd_adventures')||'[]');}
 function saveAdventures(a){localStorage.setItem('dnd_adventures',JSON.stringify(a));}
 function getAdvLocal(id){return getAdventures().find(a=>a.id===id)||null;}
@@ -309,7 +303,7 @@ function saveAdvLocal(adv){
 
 /* ====== FIREBASE CRUD ====== */
 async function saveAdv(adv){
-  saveAdvLocal(adv); // cache local immédiat
+  saveAdvLocal(adv);
   try{
     await set(ref(db,`adventures/${adv.id}`), adv);
   }catch(e){
@@ -318,29 +312,24 @@ async function saveAdv(adv){
 }
 
 async function getAdv(id){
-  // Essaie Firebase d'abord, fallback local
   try{
     const snap = await get(ref(db,`adventures/${id}`));
     if(snap.exists()){
-      const adv = snap.val();
-      saveAdvLocal(adv); // met à jour le cache
+      const adv = normalizeAdv(snap.val()); // ← normalize ici
+      saveAdvLocal(adv);
       return adv;
     }
   }catch(e){
     console.warn('Firebase read failed, using local cache:', e);
   }
-  return getAdvLocal(id);
+  return normalizeAdv(getAdvLocal(id)); // ← normalize ici aussi
 }
 
 async function getAllAdventures(){
-  // Fusionne local + Firebase (local prioritaire pour la liste)
-  const local = getAdventures();
-  // On retourne le local, Firebase sync en arrière-plan
-  return local;
+  return getAdventures().map(normalizeAdv); // ← normalize toute la liste
 }
 
 function watchAdv(id, callback){
-  // Stoppe le listener précédent
   if(watchUnsubscribe){
     watchUnsubscribe();
     watchUnsubscribe = null;
@@ -348,7 +337,7 @@ function watchAdv(id, callback){
   const r = ref(db, `adventures/${id}`);
   const unsub = onValue(r, snap => {
     if(snap.exists()){
-      const adv = snap.val();
+      const adv = normalizeAdv(snap.val()); // ← normalize ici
       saveAdvLocal(adv);
       callback(adv);
     }
@@ -435,8 +424,8 @@ window._selectAdv = async function(id){
   const adv = await getAdv(id);
   if(!adv){alert('Aventure introuvable.');return;}
   renderAdventureWith(adv);
-  
-  let firstCall = true; // ignore le premier fire immédiat
+
+  let firstCall = true;
   watchAdv(id, updatedAdv => {
     if(firstCall){ firstCall=false; return; }
     renderAdventureWith(updatedAdv);
@@ -518,6 +507,7 @@ window.goAdventure  = function(){showScreen('screen-adventure');};
 
 window.createChar = async function(){
   const adv=await getAdv(currentAdv);
+  if(!adv.chars) adv.chars=[];
   const prenom=document.getElementById('new-prenom').value.trim();
   const nom=document.getElementById('new-nom').value.trim();
   const race=document.getElementById('new-race').value;
@@ -588,8 +578,8 @@ window.doImport = async function(){
   }
 };
 
-window.showModal  = showModal;
-window.hideModal  = hideModal;
+window.showModal = showModal;
+window.hideModal = hideModal;
 
 /* ====== INIT ====== */
 renderHome();
