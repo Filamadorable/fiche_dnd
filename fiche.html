@@ -22,169 +22,74 @@
   --pink:#993556;--pink2:#ed93b1;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{
-  background:#0e0b06;
-  background-image:radial-gradient(ellipse at 20% 20%,rgba(80,40,10,0.4) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(60,20,10,0.35) 0%,transparent 55%);
-  min-height:100vh;font-family:'Crimson Pro',Georgia,serif;color:var(--text);padding-bottom:40px;
-}
-
-/* TOP BAR */
-.top-bar{
-  position:sticky;top:0;z-index:100;
-  background:rgba(14,11,6,0.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border-bottom:0.5px solid rgba(140,100,40,0.3);
-  padding:12px 16px;display:flex;align-items:center;gap:12px;
-}
+body{background:#0e0b06;background-image:radial-gradient(ellipse at 20% 20%,rgba(80,40,10,0.4) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(60,20,10,0.35) 0%,transparent 55%);min-height:100vh;font-family:'Crimson Pro',Georgia,serif;color:var(--text);padding-bottom:40px;}
+.top-bar{position:sticky;top:0;z-index:100;background:rgba(14,11,6,0.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:0.5px solid rgba(140,100,40,0.3);padding:12px 16px;display:flex;align-items:center;gap:12px;}
 .top-bar a{color:var(--gold2);font-size:18px;text-decoration:none;flex-shrink:0;min-width:32px;}
 .top-bar-center{flex:1;}
 .top-bar-center h1{font-family:'Cinzel',serif;font-size:15px;font-weight:700;color:var(--parch);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .top-bar-center p{font-size:11px;color:var(--text3);font-style:italic;}
-.save-dot{
-  width:8px;height:8px;border-radius:50%;background:var(--teal2);
-  flex-shrink:0;transition:background .3s;
-}
+.save-dot{width:8px;height:8px;border-radius:50%;background:var(--teal2);flex-shrink:0;transition:background .3s;}
 .save-dot.saving{background:var(--amber2);}
-.gm-badge{
-  font-size:10px;font-family:'Cinzel',serif;
-  background:rgba(160,120,40,0.2);color:var(--gold2);
-  border:0.5px solid rgba(160,120,40,.4);border-radius:4px;
-  padding:2px 7px;flex-shrink:0;
-}
-
-/* TABS */
-.tabs{
-  display:flex;overflow-x:auto;gap:0;
-  background:rgba(26,18,8,0.95);border-bottom:0.5px solid rgba(140,100,40,0.25);
-  -webkit-overflow-scrolling:touch;scrollbar-width:none;
-}
+.gm-badge{font-size:10px;font-family:'Cinzel',serif;background:rgba(160,120,40,0.2);color:var(--gold2);border:0.5px solid rgba(160,120,40,.4);border-radius:4px;padding:2px 7px;flex-shrink:0;display:none;}
+.tabs{display:flex;overflow-x:auto;gap:0;background:rgba(26,18,8,0.95);border-bottom:0.5px solid rgba(140,100,40,0.25);-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{
-  flex-shrink:0;padding:11px 16px;
-  font-size:11px;font-weight:600;color:var(--text3);
-  cursor:pointer;border:none;background:none;font-family:'Cinzel',serif;
-  border-bottom:2px solid transparent;transition:color .15s,border-color .15s;
-  letter-spacing:.07em;text-transform:uppercase;
-}
+.tab{flex-shrink:0;padding:11px 16px;font-size:11px;font-weight:600;color:var(--text3);cursor:pointer;border:none;background:none;font-family:'Cinzel',serif;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;letter-spacing:.07em;text-transform:uppercase;}
 .tab.active{color:var(--gold2);border-bottom-color:var(--gold);}
-
-/* PAGES */
 .page{display:none;padding:14px;max-width:540px;margin:0 auto;}
 .page.active{display:block;}
-
-/* CARDS */
 .card{background:var(--bg-card);border:0.5px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:14px;position:relative;overflow:hidden;}
 .card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.07) 0%,transparent 60%);pointer-events:none;}
 .card:last-child{margin-bottom:0;}
-
-.sec{
-  font-family:'Cinzel',serif;font-size:10px;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--blood);
-  margin-bottom:14px;padding-bottom:8px;border-bottom:0.5px solid var(--border);
-  display:flex;align-items:center;gap:8px;
-}
+.sec{font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blood);margin-bottom:14px;padding-bottom:8px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:8px;}
 .sec::before{content:'✦';font-size:8px;opacity:.6;}
-
-/* FORM */
 .f{display:flex;flex-direction:column;gap:4px;margin-bottom:11px;}
 .f:last-child{margin-bottom:0;}
 .f label{font-size:10px;color:var(--text2);letter-spacing:.08em;text-transform:uppercase;font-family:'Cinzel',serif;}
-.f input,.f select,.f textarea{
-  font-size:14px;font-family:'Crimson Pro',serif;
-  background:rgba(255,255,255,0.5);border:0.5px solid var(--border);
-  border-radius:7px;padding:9px 11px;color:var(--text);width:100%;
-  -webkit-appearance:none;appearance:none;
-}
+.f input,.f select,.f textarea{font-size:14px;font-family:'Crimson Pro',serif;background:rgba(255,255,255,0.5);border:0.5px solid var(--border);border-radius:7px;padding:9px 11px;color:var(--text);width:100%;-webkit-appearance:none;appearance:none;}
 .f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.75);}
 .f textarea{resize:vertical;min-height:64px;line-height:1.5;}
 .f select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239c7a50' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px;}
 .f select option{background:#f5eedc;}
-
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-
-/* AVATAR */
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
 .avatar{width:58px;height:58px;border-radius:50%;background:rgba(139,26,26,0.1);border:2px solid rgba(139,26,26,.3);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;margin:0 auto 14px;}
-
-/* BARS */
 .bar-row{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:4px;}
 .bar-track{background:rgba(0,0,0,.12);border-radius:5px;height:10px;overflow:hidden;}
 .bar-fill{height:100%;border-radius:5px;transition:width .25s;}
-.b-hp{background:#5dcaa5;} .b-mp{background:#afa9ec;} .b-end{background:#f0997b;} .b-stress{background:#fac775;} .b-mental{background:#85b7eb;}
+.b-hp{background:#5dcaa5;}.b-mp{background:#afa9ec;}.b-end{background:#f0997b;}.b-stress{background:#fac775;}.b-mental{background:#85b7eb;}
 input[type=range]{width:100%;margin-top:7px;accent-color:var(--gold);height:22px;}
-
-/* VITALS */
 .vital-box{background:rgba(255,255,255,0.4);border:0.5px solid var(--border);border-radius:8px;padding:12px 13px;margin-bottom:9px;}
 .vital-box:last-child{margin-bottom:0;}
 .vital-lbl{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-family:'Cinzel',serif;}
 .vital-num-row{display:flex;align-items:center;gap:6px;margin-top:7px;}
-.vital-num-row input{
-  font-size:18px;font-weight:700;background:rgba(255,255,255,.6);
-  border:0.5px solid var(--border);border-radius:6px;
-  text-align:center;width:66px;padding:6px 4px;font-family:'Cinzel',serif;color:var(--ink);
-}
-.vital-num-row input:focus{outline:none;border-color:var(--gold);}
-.vital-sep{color:var(--text3);font-size:16px;}
-
-/* STATS */
-.stat-block{border:0.5px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:8px;}
+.vital-num-row input{font-size:18px;font-weight:700;background:rgba(255,255,255,.6);border:0.5px solid var(--border);border-radius:6px;text-align:center;width:66px;padding:6px 4px;font-family:'Cinzel',serif;color:var(--text);}
+.vital-sep{font-size:13px;color:var(--text3);}
+.stat-block{background:rgba(255,255,255,0.38);border:0.5px solid var(--border);border-radius:9px;padding:13px;margin-bottom:10px;}
 .stat-block:last-child{margin-bottom:0;}
-.stat-head{padding:11px 13px;display:flex;align-items:center;justify-content:space-between;}
-.stat-name{font-size:13px;font-weight:600;font-family:'Cinzel',serif;}
-.stat-val-wrap{display:flex;align-items:center;gap:9px;}
-.stat-val-wrap input{font-size:22px;font-weight:700;background:transparent;border:none;text-align:center;width:50px;font-family:'Cinzel',serif;}
-.stat-val-wrap input:focus{outline:none;}
-.btn-sub{font-size:11px;border:0.5px solid;border-radius:6px;padding:5px 11px;cursor:pointer;background:transparent;font-family:'Cinzel',serif;transition:opacity .15s;min-height:34px;letter-spacing:.04em;}
-.btn-sub:active{opacity:.5;}
-.sub-zone{padding:9px 13px 11px;background:rgba(0,0,0,.06);display:flex;flex-direction:column;gap:7px;}
+.stat-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.stat-name{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blood);}
+.stat-val-wrap{display:flex;align-items:center;gap:5px;}
+.stat-val-wrap input{font-size:20px;font-weight:700;font-family:'Cinzel',serif;width:54px;text-align:center;background:rgba(255,255,255,.7);border:0.5px solid var(--border);border-radius:6px;padding:4px 2px;color:var(--text);}
+.stat-add{font-size:13px;color:var(--gold);background:rgba(160,120,40,.12);border:0.5px solid rgba(160,120,40,.25);border-radius:5px;padding:4px 9px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:.04em;}
+.stat-add:active{background:rgba(160,120,40,.25);}
+.sub-list{display:flex;flex-direction:column;gap:6px;}
 .sub-row{display:flex;align-items:center;gap:7px;}
-.sub-row input[type=text]{flex:1;font-size:13px;font-family:'Crimson Pro',serif;background:rgba(255,255,255,.5);border:0.5px solid var(--border);border-radius:6px;padding:7px 9px;color:var(--text);}
-.sub-row input[type=number]{width:54px;font-size:15px;font-weight:700;font-family:'Cinzel',serif;background:rgba(255,255,255,.5);border:0.5px solid var(--border);border-radius:6px;padding:7px 4px;text-align:center;color:var(--text);}
-.sub-row input:focus{outline:none;border-color:var(--gold);}
-.del-btn{font-size:16px;color:var(--text3);background:none;border:none;cursor:pointer;padding:4px 6px;min-width:34px;min-height:34px;display:flex;align-items:center;justify-content:center;border-radius:6px;}
-.del-btn:active{background:rgba(200,30,30,.15);color:var(--blood);}
-
-/* STAT COLORS */
-.s-force .stat-head{background:rgba(216,90,48,.1);} .s-force .stat-name{color:#c85030;} .s-force .stat-val-wrap input{color:#c85030;} .s-force .btn-sub{color:#c85030;border-color:#d85a30;}
-.s-puis .stat-head{background:rgba(216,90,48,.06);} .s-puis .stat-name{color:#c85030;} .s-puis .stat-val-wrap input{color:#c85030;} .s-puis .btn-sub{color:#c85030;border-color:#d85a30;}
-.s-dex .stat-head{background:rgba(29,122,92,.1);} .s-dex .stat-name{color:#1d7a5c;} .s-dex .stat-val-wrap input{color:#1d7a5c;} .s-dex .btn-sub{color:#1d7a5c;border-color:#1d9e75;}
-.s-con .stat-head{background:rgba(29,122,92,.06);} .s-con .stat-name{color:#1d7a5c;} .s-con .stat-val-wrap input{color:#1d7a5c;} .s-con .btn-sub{color:#1d7a5c;border-color:#1d9e75;}
-.s-int .stat-head{background:rgba(83,74,183,.09);} .s-int .stat-name{color:#534ab7;} .s-int .stat-val-wrap input{color:#534ab7;} .s-int .btn-sub{color:#534ab7;border-color:#7f77dd;}
-.s-per .stat-head{background:rgba(24,95,165,.09);} .s-per .stat-name{color:#185fa5;} .s-per .stat-val-wrap input{color:#185fa5;} .s-per .btn-sub{color:#185fa5;border-color:#378add;}
-.s-cha .stat-head{background:rgba(153,53,86,.09);} .s-cha .stat-name{color:#993556;} .s-cha .stat-val-wrap input{color:#993556;} .s-cha .btn-sub{color:#993556;border-color:#d4537e;}
-.s-chance .stat-head{background:rgba(186,117,23,.09);} .s-chance .stat-name{color:#a07830;} .s-chance .stat-val-wrap input{color:#a07830;} .s-chance .btn-sub{color:#a07830;border-color:#ba7517;}
-
-/* BIG STAT */
-.big-stat{background:rgba(255,255,255,.4);border:0.5px solid var(--border);border-radius:8px;padding:13px;text-align:center;}
-.big-stat label{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:5px;font-family:'Cinzel',serif;}
-.big-stat input{font-size:28px;font-weight:700;background:transparent;border:none;text-align:center;width:80px;font-family:'Cinzel',serif;color:var(--ink);}
-.big-stat input:focus{outline:none;}
-
-/* GOLD */
-.gold-box{display:flex;align-items:center;gap:12px;background:rgba(160,120,40,0.1);border:0.5px solid rgba(160,120,40,.3);border-radius:8px;padding:13px 15px;margin-top:12px;}
-.gold-circle{width:26px;height:26px;border-radius:50%;background:var(--gold2);border:1px solid var(--gold);flex-shrink:0;}
-.gold-box label{font-size:10px;color:var(--gold);display:block;margin-bottom:2px;letter-spacing:.07em;font-family:'Cinzel',serif;}
-.gold-box input{font-size:22px;font-weight:700;background:transparent;border:none;font-family:'Cinzel',serif;color:var(--gold2);width:100px;}
-.gold-box input:focus{outline:none;}
-
-/* SAVE TOAST */
-.toast{
-  position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);
-  background:rgba(26,18,8,0.95);color:var(--teal2);
-  font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;
-  padding:10px 18px;border-radius:20px;border:0.5px solid rgba(93,202,165,.3);
-  z-index:300;transition:transform .3s;pointer-events:none;
-}
-.toast.show{transform:translateX(-50%) translateY(0);}
-
-/* GM delete button */
-.gm-controls{margin-top:16px;padding-top:14px;border-top:0.5px solid var(--border);}
-.btn-danger{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  width:100%;padding:11px 16px;border-radius:8px;
-  font-family:'Cinzel',serif;font-size:12px;font-weight:600;
-  letter-spacing:.07em;cursor:pointer;border:0.5px solid rgba(200,30,30,.4);
-  background:rgba(200,30,30,.08);color:var(--blood);text-transform:uppercase;
-}
-.btn-danger:active{background:rgba(200,30,30,.2);}
+.sub-row input:first-child{flex:1;font-size:13px;padding:6px 9px;}
+.sub-row input:last-child{width:52px;font-size:14px;font-weight:600;text-align:center;padding:6px 4px;}
+.sub-del{font-size:16px;color:var(--text3);background:none;border:none;cursor:pointer;padding:4px 5px;border-radius:5px;flex-shrink:0;}
+.sub-del:active{background:rgba(139,26,26,.12);color:var(--blood);}
+.or-row{display:flex;align-items:center;gap:10px;}
+.or-row input{flex:1;font-size:20px;font-weight:700;font-family:'Cinzel',serif;text-align:center;}
+.or-btn{width:40px;height:40px;border-radius:8px;font-size:20px;font-weight:700;border:0.5px solid var(--border);background:rgba(255,255,255,.5);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;}
+.or-btn:active{background:rgba(160,120,40,.15);}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 20px;border-radius:8px;font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:.08em;cursor:pointer;border:none;transition:all .18s;text-transform:uppercase;margin-bottom:10px;}
+.btn:last-child{margin-bottom:0;}
+.btn-primary{background:linear-gradient(135deg,var(--blood) 0%,var(--blood2) 100%);color:#fff;box-shadow:0 2px 12px rgba(139,26,26,0.35);}
+.btn-danger{background:linear-gradient(135deg,#7a1010,#b02020);color:#fff;}
+.btn-ghost{background:transparent;border:0.5px solid var(--border);color:var(--text2);}
+.gm-panel{background:rgba(160,120,40,0.08);border:0.5px solid rgba(160,120,40,.25);border-radius:10px;padding:14px;margin-bottom:14px;display:none;}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(26,18,8,0.92);color:var(--parch);font-family:'Cinzel',serif;font-size:12px;letter-spacing:.07em;padding:10px 22px;border-radius:30px;border:0.5px solid rgba(140,100,40,.4);opacity:0;pointer-events:none;transition:all .3s;z-index:300;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 </style>
 </head>
 <body>
@@ -193,38 +98,42 @@ input[type=range]{width:100%;margin-top:7px;accent-color:var(--gold);height:22px
   <a href="index.html">←</a>
   <div class="top-bar-center">
     <h1 id="char-title">Personnage</h1>
-    <p id="char-sub">Chargement…</p>
+    <p id="char-sub">Race · Classe</p>
   </div>
-  <div class="save-dot" id="save-dot" title="Sauvegarde automatique"></div>
-  <div class="gm-badge" id="gm-badge" style="display:none">MJ</div>
+  <div class="gm-badge" id="gm-badge">MJ</div>
+  <div class="save-dot" id="save-dot" title="Sauvegarde"></div>
 </div>
 
 <div class="tabs">
-  <button class="tab active" onclick="switchTab('identite',this)">Identité</button>
-  <button class="tab" onclick="switchTab('psycho',this)">Psycho</button>
-  <button class="tab" onclick="switchTab('vitales',this)">Vitales</button>
-  <button class="tab" onclick="switchTab('stats',this)">Stats</button>
+  <button class="tab active" onclick="switchTab(0)">Identité</button>
+  <button class="tab" onclick="switchTab(1)">Vitales</button>
+  <button class="tab" onclick="switchTab(2)">Stats</button>
+  <button class="tab" onclick="switchTab(3)">Psyché</button>
+  <button class="tab" onclick="switchTab(4)">Richesse</button>
+  <button class="tab" onclick="switchTab(5)">MJ</button>
 </div>
 
-<!-- TAB: IDENTITE -->
-<div class="page active" id="tab-identite">
+<!-- PAGE 0 : IDENTITÉ -->
+<div class="page active" id="page-0">
   <div class="card">
-    <div class="sec">Personnage</div>
-    <div style="display:flex;justify-content:center"><div class="avatar" id="avatar">⚔️</div></div>
+    <div id="char-avatar" class="avatar">⚔️</div>
+    <div class="sec">Identité</div>
     <div class="grid-2">
-      <div class="f"><label>Prénom</label><input type="text" id="i-prenom" oninput="updAvatar();autoSave()"></div>
-      <div class="f"><label>Nom</label><input type="text" id="i-nom" oninput="autoSave()"></div>
+      <div class="f"><label>Prénom</label><input type="text" id="i-prenom" oninput="scheduleSave()"></div>
+      <div class="f"><label>Nom</label><input type="text" id="i-nom" oninput="scheduleSave()"></div>
     </div>
     <div class="grid-2">
-      <div class="f"><label>Race</label>
-        <select id="i-race" onchange="updAvatar();autoSave()">
+      <div class="f">
+        <label>Race</label>
+        <select id="i-race" onchange="updAvatar();scheduleSave()">
           <option value="">—</option><option>Humain</option><option>Elfe</option><option>Nain</option>
           <option>Halfelin</option><option>Gnome</option><option>Semi-orque</option>
           <option>Tieffelin</option><option>Draconique</option><option>Aasimar</option><option>Autre</option>
         </select>
       </div>
-      <div class="f"><label>Classe</label>
-        <select id="i-classe" onchange="updAvatar();autoSave()">
+      <div class="f">
+        <label>Classe</label>
+        <select id="i-classe" onchange="updAvatar();scheduleSave()">
           <option value="">—</option><option>Guerrier</option><option>Mage</option><option>Rôdeur</option>
           <option>Voleur</option><option>Paladin</option><option>Clerc</option><option>Barde</option>
           <option>Druide</option><option>Moine</option><option>Sorcier</option><option>Autre</option>
@@ -232,317 +141,508 @@ input[type=range]{width:100%;margin-top:7px;accent-color:var(--gold);height:22px
       </div>
     </div>
     <div class="grid-2">
-      <div class="f"><label>Âge</label><input type="number" id="i-age" placeholder="—" min="1" inputmode="numeric" oninput="autoSave()"></div>
-      <div class="f"><label>Taille</label><input type="text" id="i-taille" placeholder="1m75" oninput="autoSave()"></div>
+      <div class="f"><label>Âge</label><input type="text" id="i-age" placeholder="28 ans" oninput="scheduleSave()"></div>
+      <div class="f"><label>Taille</label><input type="text" id="i-taille" placeholder="1m78" oninput="scheduleSave()"></div>
     </div>
     <div class="grid-2">
-      <div class="f"><label>Sexe</label>
-        <select id="i-sexe" onchange="autoSave()">
-          <option value="">—</option><option>Homme</option><option>Femme</option><option>Non-binaire</option><option>Autre</option>
+      <div class="f">
+        <label>Genre</label>
+        <select id="i-sexe" onchange="scheduleSave()">
+          <option value="">—</option><option>Homme</option><option>Femme</option>
+          <option>Non-binaire</option><option>Autre</option>
         </select>
       </div>
-      <div class="f"><label>Attirance</label>
-        <select id="i-attirance" onchange="autoSave()">
-          <option value="">—</option><option>Hétéro</option><option>Homo</option><option>Bi</option><option>Pan</option><option>Asexuel</option><option>Autre</option>
+      <div class="f">
+        <label>Attirance</label>
+        <select id="i-attirance" onchange="scheduleSave()">
+          <option value="">—</option><option>Hétérosexuel·le</option><option>Homosexuel·le</option>
+          <option>Bisexuel·le</option><option>Asexuel·le</option><option>Autre</option>
         </select>
       </div>
     </div>
-    <div class="f"><label>Alignement</label>
-      <select id="i-alignement" onchange="autoSave()">
-        <option value="">—</option><option>Loyal Bon</option><option>Neutre Bon</option><option>Chaotique Bon</option>
-        <option>Loyal Neutre</option><option>Vrai Neutre</option><option>Chaotique Neutre</option>
+    <div class="f">
+      <label>Alignement</label>
+      <select id="i-alignement" onchange="scheduleSave()">
+        <option value="">—</option>
+        <option>Loyal Bon</option><option>Neutre Bon</option><option>Chaotique Bon</option>
+        <option>Loyal Neutre</option><option>Neutre Pur</option><option>Chaotique Neutre</option>
         <option>Loyal Mauvais</option><option>Neutre Mauvais</option><option>Chaotique Mauvais</option>
       </select>
     </div>
   </div>
   <div class="card">
-    <div class="sec">Identité intérieure</div>
-    <div class="f"><label>Peur</label><input type="text" id="i-peur" placeholder="Ex : mourir seul…" oninput="autoSave()"></div>
-    <div class="f"><label>Désir / Objectif</label><input type="text" id="i-desir" placeholder="Ex : venger sa famille…" oninput="autoSave()"></div>
-    <div class="f"><label>Défaut</label><input type="text" id="i-defaut" placeholder="Ex : arrogant, impulsif…" oninput="autoSave()"></div>
-    <div class="f"><label>Maladie mentale</label><input type="text" id="i-maladie" placeholder="Ex : PTSD, paranoïa…" oninput="autoSave()"></div>
-    <div class="f"><label>Biographie</label><textarea id="i-bio" placeholder="L'histoire de ce personnage…" oninput="autoSave()"></textarea></div>
+    <div class="sec">Traits & Histoire</div>
+    <div class="f"><label>Plus grande peur</label><input type="text" id="i-peur" oninput="scheduleSave()"></div>
+    <div class="f"><label>Désir profond</label><input type="text" id="i-desir" oninput="scheduleSave()"></div>
+    <div class="f"><label>Défaut principal</label><input type="text" id="i-defaut" oninput="scheduleSave()"></div>
+    <div class="f"><label>Maladie / Affliction</label><input type="text" id="i-maladie" oninput="scheduleSave()"></div>
+    <div class="f"><label>Biographie</label><textarea id="i-bio" placeholder="Histoire du personnage…" oninput="scheduleSave()"></textarea></div>
   </div>
 </div>
 
-<!-- TAB: PSYCHO -->
-<div class="page" id="tab-psycho">
+<!-- PAGE 1 : VITALES -->
+<div class="page" id="page-1">
   <div class="card">
-    <div class="sec">État psychologique</div>
-    <div style="margin-bottom:16px">
-      <div class="bar-row"><span>État mental</span><span id="mental-lbl">50 / 100</span></div>
-      <div class="bar-track"><div class="bar-fill b-mental" id="mental-bar" style="width:50%"></div></div>
-      <input type="range" id="r-mental" min="0" max="100" value="50" step="1" oninput="updBar('mental',this.value,100);autoSave()">
+    <div class="sec">Points de Vie & Énergie</div>
+    <div class="vital-box">
+      <div class="vital-lbl">❤️ Points de Vie</div>
+      <div class="bar-row"><span id="lbl-hp">80 / 100</span></div>
+      <div class="bar-track"><div class="bar-fill b-hp" id="bar-hp" style="width:80%"></div></div>
+      <div class="vital-num-row">
+        <input type="number" id="hp-cur" value="80" min="0" oninput="updBarInp('hp',this.value,document.getElementById('hp-max').value);scheduleSave()">
+        <span class="vital-sep">/</span>
+        <input type="number" id="hp-max" value="100" min="1" oninput="updBarInp('hp',document.getElementById('hp-cur').value,this.value);scheduleSave()">
+      </div>
     </div>
-    <div style="margin-bottom:16px">
-      <div class="bar-row"><span>Stress</span><span id="stress-lbl">30 / 100</span></div>
-      <div class="bar-track"><div class="bar-fill b-stress" id="stress-bar" style="width:30%"></div></div>
-      <input type="range" id="r-stress" min="0" max="100" value="30" step="1" oninput="updBar('stress',this.value,100);autoSave()">
+    <div class="vital-box">
+      <div class="vital-lbl">💧 Points de Magie</div>
+      <div class="bar-row"><span id="lbl-mp">60 / 100</span></div>
+      <div class="bar-track"><div class="bar-fill b-mp" id="bar-mp" style="width:60%"></div></div>
+      <div class="vital-num-row">
+        <input type="number" id="mp-cur" value="60" min="0" oninput="updBarInp('mp',this.value,document.getElementById('mp-max').value);scheduleSave()">
+        <span class="vital-sep">/</span>
+        <input type="number" id="mp-max" value="100" min="1" oninput="updBarInp('mp',document.getElementById('mp-cur').value,this.value);scheduleSave()">
+      </div>
     </div>
-    <div class="f"><label>Notes psychologiques</label><textarea id="psycho-notes" placeholder="Troubles, crises, déclencheurs…" oninput="autoSave()"></textarea></div>
-  </div>
-</div>
+    <div class="vital-box">
+      <div class="vital-lbl">🔥 Endurance</div>
+      <div class="bar-row"><span id="lbl-end">70 / 100</span></div>
+      <div class="bar-track"><div class="bar-fill b-end" id="bar-end" style="width:70%"></div></div>
+      <div class="vital-num-row">
+        <input type="number" id="end-cur" value="70" min="0" oninput="updBarInp('end',this.value,document.getElementById('end-max').value);scheduleSave()">
+        <span class="vital-sep">/</span>
 
-<!-- TAB: VITALES -->
-<div class="page" id="tab-vitales">
+        <input type="number" id="end-max" value="100" min="1" oninput="updBarInp('end',document.getElementById('end-cur').value,this.value);scheduleSave()">
+      </div>
+    </div>
+  </div>
   <div class="card">
-    <div class="sec">Valeurs vitales &amp; mobilité</div>
-    <div class="vital-box">
-      <div class="vital-lbl">Niveau</div>
-      <div style="display:flex;align-items:baseline;gap:6px;margin-top:4px">
-        <input type="number" id="v-niveau" value="1" min="1" max="20" inputmode="numeric" style="font-size:30px;font-weight:700;background:transparent;border:none;width:70px;font-family:'Cinzel',serif;color:var(--blood);" oninput="autoSave()">
-        <span style="font-size:13px;color:var(--text3)">/20</span>
-      </div>
-    </div>
-    <div class="vital-box">
-      <div class="vital-lbl">PV — Points de vie</div>
-      <div class="bar-row" style="margin-top:4px"><span id="hp-lbl">80 / 100</span></div>
-      <div class="bar-track"><div class="bar-fill b-hp" id="hp-bar" style="width:80%"></div></div>
-      <div class="vital-num-row">
-        <input type="number" id="hp-cur" value="80" min="0" inputmode="numeric" oninput="updBarInp('hp',this.value,document.getElementById('hp-max').value);autoSave()">
-        <span class="vital-sep">/</span>
-        <input type="number" id="hp-max" value="100" min="1" inputmode="numeric" oninput="updBarInp('hp',document.getElementById('hp-cur').value,this.value);autoSave()">
-      </div>
-    </div>
-    <div class="vital-box">
-      <div class="vital-lbl">Mana</div>
-      <div class="bar-row" style="margin-top:4px"><span id="mp-lbl">60 / 100</span></div>
-      <div class="bar-track"><div class="bar-fill b-mp" id="mp-bar" style="width:60%"></div></div>
-      <div class="vital-num-row">
-        <input type="number" id="mp-cur" value="60" min="0" inputmode="numeric" oninput="updBarInp('mp',this.value,document.getElementById('mp-max').value);autoSave()">
-        <span class="vital-sep">/</span>
-        <input type="number" id="mp-max" value="100" min="1" inputmode="numeric" oninput="updBarInp('mp',document.getElementById('mp-cur').value,this.value);autoSave()">
-      </div>
-    </div>
-    <div class="vital-box">
-      <div class="vital-lbl">Endurance</div>
-      <div class="bar-row" style="margin-top:4px"><span id="end-lbl">70 / 100</span></div>
-      <div class="bar-track"><div class="bar-fill b-end" id="end-bar" style="width:70%"></div></div>
-      <div class="vital-num-row">
-        <input type="number" id="end-cur" value="70" min="0" inputmode="numeric" oninput="updBarInp('end',this.value,document.getElementById('end-max').value);autoSave()">
-        <span class="vital-sep">/</span>
-        <input type="number" id="end-max" value="100" min="1" inputmode="numeric" oninput="updBarInp('end',document.getElementById('end-cur').value,this.value);autoSave()">
-      </div>
-    </div>
-    <div class="grid-2" style="margin-top:10px">
-      <div class="big-stat"><label>Vitesse (m/tour)</label><input type="number" id="v-vitesse" value="9" min="0" inputmode="numeric" oninput="autoSave()"></div>
-      <div class="big-stat"><label>Initiative</label><input type="number" id="v-initiative" value="4" inputmode="numeric" oninput="autoSave()"></div>
+    <div class="sec">Combat & Déplacement</div>
+    <div class="grid-3">
+      <div class="f"><label>Niveau</label><input type="number" id="v-niveau" min="1" max="20" oninput="scheduleSave()"></div>
+      <div class="f"><label>Vitesse</label><input type="number" id="v-vitesse" min="0" oninput="scheduleSave()"></div>
+      <div class="f"><label>Initiative</label><input type="number" id="v-initiative" oninput="scheduleSave()"></div>
     </div>
   </div>
 </div>
 
-<!-- TAB: STATS -->
-<div class="page" id="tab-stats">
+<!-- PAGE 2 : STATS -->
+<div class="page" id="page-2">
   <div class="card">
-    <div class="sec">Statistiques</div>
-    <div id="stats-grid"></div>
-    <div class="gold-box">
-      <div class="gold-circle"></div>
-      <div>
-        <label>Pièces d'or (P.O)</label>
-        <input type="number" id="s-or" value="0" min="0" inputmode="numeric" placeholder="0" oninput="autoSave()">
-      </div>
+    <div class="sec">Caractéristiques</div>
+    <div id="stats-container"></div>
+  </div>
+</div>
+
+<!-- PAGE 3 : PSYCHÉ -->
+<div class="page" id="page-3">
+  <div class="card">
+    <div class="sec">État Mental</div>
+    <div class="vital-box">
+      <div class="vital-lbl">🧠 Santé Mentale</div>
+      <div class="bar-row"><span id="lbl-mental">50</span></div>
+      <div class="bar-track"><div class="bar-fill b-mental" id="bar-mental" style="width:50%"></div></div>
+      <input type="range" id="r-mental" min="0" max="100" value="50"
+        oninput="updBar('mental',this.value,100);scheduleSave()">
     </div>
-    <div class="gm-controls" id="gm-controls" style="display:none">
-      <button class="btn-danger" onclick="deleteChar()">✕ &nbsp;Supprimer ce personnage</button>
+    <div class="vital-box">
+      <div class="vital-lbl">⚡ Stress</div>
+      <div class="bar-row"><span id="lbl-stress">30</span></div>
+      <div class="bar-track"><div class="bar-fill b-stress" id="bar-stress" style="width:30%"></div></div>
+      <input type="range" id="r-stress" min="0" max="100" value="30"
+        oninput="updBar('stress',this.value,100);scheduleSave()">
+    </div>
+  </div>
+  <div class="card">
+    <div class="sec">Notes Psychologiques</div>
+    <div class="f">
+      <textarea id="psycho-notes" style="min-height:120px"
+        placeholder="Traumatismes, phobies, émotions…" oninput="scheduleSave()"></textarea>
     </div>
   </div>
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast">✓ Sauvegardé</div>
+<!-- PAGE 4 : RICHESSE -->
+<div class="page" id="page-4">
+  <div class="card">
+    <div class="sec">Pièces d'Or</div>
+    <div class="or-row">
+      <button class="or-btn" onclick="adjOr(-10)">−</button>
+      <input type="number" id="s-or" value="0" min="0" oninput="scheduleSave()">
+      <button class="or-btn" onclick="adjOr(10)">+</button>
+    </div>
+  </div>
+</div>
 
-<script>
-/* ====== PARAMS ====== */
-const params = new URLSearchParams(location.search);
-const advId = params.get('adv');
-const charId = params.get('char');
-const isGM = params.get('gm') === '1';
+<!-- PAGE 5 : MJ -->
+<div class="page" id="page-5">
+  <div class="gm-panel" id="gm-controls">
+    <div class="sec">Panneau MJ</div>
+    <button class="btn btn-danger" onclick="deleteChar()">🗑 Supprimer ce personnage</button>
+  </div>
+  <div class="card">
+    <div class="sec">Informations MJ</div>
+    <p style="font-size:13px;color:var(--text3);font-style:italic;text-align:center;padding:10px 0;">
+      Connecte-toi en tant que MJ depuis l'accueil pour accéder aux options.
+    </p>
+  </div>
+</div>
 
-/* ====== STORAGE ====== */
-function getAdv(){return JSON.parse(localStorage.getItem('dnd_adventures')||'[]').find(a=>a.id===advId)||null;}
-function getChar(){const adv=getAdv();return adv?adv.chars.find(c=>c.id===charId):null;}
-function saveChar(data){
-  const list=JSON.parse(localStorage.getItem('dnd_adventures')||'[]');
-  const ai=list.findIndex(a=>a.id===advId);
-  if(ai<0)return;
-  const ci=list[ai].chars.findIndex(c=>c.id===charId);
-  if(ci<0)return;
-  list[ai].chars[ci].data=data;
-  localStorage.setItem('dnd_adventures',JSON.stringify(list));
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, get, onValue, off }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+/* === MÊME CONFIG QUE index.html === */
+const firebaseConfig = {
+
+  apiKey: "AIzaSyAlSYMROZzGvAe_PbKYtIyO_n0mJcHE8ec",
+
+  authDomain: "fiche-dnd.firebaseapp.com",
+
+  databaseURL: "https://fiche-dnd-default-rtdb.europe-west1.firebasedatabase.app",
+
+  projectId: "fiche-dnd",
+
+  storageBucket: "fiche-dnd.firebasestorage.app",
+
+  messagingSenderId: "2067270488",
+
+  appId: "1:2067270488:web:98e242ec19664c5292f32d"
+
+};
+const app = initializeApp(firebaseConfig);
+const db  = getDatabase(app);
+
+/* === PARAMS URL === */
+const params  = new URLSearchParams(location.search);
+const advId   = params.get('adv');
+const charId  = params.get('char');
+const isGM    = params.get('gm') === '1';
+
+/* === ÉTAT === */
+let saveTimer = null;
+let currentAdv = null;
+
+const EMOJIS = {
+  Guerrier:'⚔️',Mage:'🔮','Rôdeur':'🏹',Voleur:'🗡️',Paladin:'🛡️',
+  Clerc:'✝️',Barde:'🎶',Druide:'🌿',Moine:'🥋',Sorcier:'📜',
+  Humain:'🧑',Elfe:'🧝',Nain:'⛏️',Halfelin:'🌿',Gnome:'🔬',
+  'Semi-orque':'💪',Tieffelin:'😈',Draconique:'🐉',Aasimar:'✨'
+};
+
+/* === TABS === */
+window.switchTab = function(i){
+  document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',i===j));
+  document.querySelectorAll('.page').forEach((p,j)=>p.classList.toggle('active',i===j));
+  window.scrollTo(0,0);
+};
+
+/* === BARS === */
+window.updBar = function(key,val,max){
+  const pct = Math.min(100, Math.max(0, Math.round(val/max*100)));
+  const bar = document.getElementById('bar-'+key);
+  const lbl = document.getElementById('lbl-'+key);
+  if(bar) bar.style.width = pct+'%';
+  if(lbl) lbl.textContent = val;
+};
+window.updBarInp = function(key,cur,max){
+  const pct = Math.min(100, Math.max(0, Math.round(Number(cur)/Math.max(1,Number(max))*100)));
+  const bar = document.getElementById('bar-'+key);
+  const lbl = document.getElementById('lbl-'+key);
+  if(bar) bar.style.width = pct+'%';
+  if(lbl) lbl.textContent = `${cur} / ${max}`;
+};
+
+/* === AVATAR === */
+window.updAvatar = function(){
+  const classe = document.getElementById('i-classe')?.value;
+  const race   = document.getElementById('i-race')?.value;
+  const emoji  = EMOJIS[classe] || EMOJIS[race] || '⚔️';
+  const el = document.getElementById('char-avatar');
+  if(el) el.textContent = emoji;
+};
+
+/* === TOAST === */
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 1800);
 }
 
-/* ====== UI ====== */
-const EMOJIS={Guerrier:'⚔️',Mage:'🔮','Rôdeur':'🏹',Voleur:'🗡️',Paladin:'🛡️',Clerc:'✝️',Barde:'🎶',Druide:'🌿',Moine:'🥋',Sorcier:'📜',Humain:'🧑',Elfe:'🧝',Nain:'⛏️',Halfelin:'🌿',Gnome:'🔬','Semi-orque':'💪',Tieffelin:'😈',Draconique:'🐉',Aasimar:'✨'};
-
-function switchTab(id,btn){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  btn.classList.add('active');
-}
-function updAvatar(){
-  const c=document.getElementById('i-classe').value;
-  const r=document.getElementById('i-race').value;
-  document.getElementById('avatar').textContent=EMOJIS[c]||EMOJIS[r]||'⚔️';
-}
-function updBar(id,v,max){
-  document.getElementById(id+'-bar').style.width=Math.min(100,Math.round(v/max*100))+'%';
-  document.getElementById(id+'-lbl').textContent=Math.round(v)+' / '+max;
-}
-function updBarInp(id,cur,max){
-  cur=parseInt(cur)||0;max=parseInt(max)||1;
-  document.getElementById(id+'-bar').style.width=Math.min(100,Math.round(cur/max*100))+'%';
-  document.getElementById(id+'-lbl').textContent=cur+' / '+max;
+/* === SAVE DOT === */
+function setSaving(on){
+  document.getElementById('save-dot')?.classList.toggle('saving', on);
 }
 
-/* ====== STATS GRID ====== */
-const STATS=[
-  {name:'Force',cls:'s-force'},{name:'Puissance',cls:'s-puis'},
-  {name:'Dextérité',cls:'s-dex'},{name:'Constitution',cls:'s-con'},
-  {name:'Intelligence',cls:'s-int'},{name:'Perception',cls:'s-per'},
-  {name:'Charisme',cls:'s-cha'},{name:'Chance',cls:'s-chance'}
-];
-function buildStats(statsData,subsData){
-  const g=document.getElementById('stats-grid');g.innerHTML='';
-  STATS.forEach((s,i)=>{
-    const d=document.createElement('div');
-    d.className='stat-block '+s.cls;
-    d.innerHTML=`
+/* === LOCAL CACHE === */
+function saveAdvLocal(adv){
+  const list = JSON.parse(localStorage.getItem('dnd_adventures')||'[]');
+  const i = list.findIndex(a=>a.id===adv.id);
+  if(i>=0) list[i]=adv; else list.push(adv);
+  localStorage.setItem('dnd_adventures', JSON.stringify(list));
+}
+
+/* === FIREBASE READ/WRITE === */
+async function getAdvFull(){
+  try{
+    const snap = await get(ref(db, `adventures/${advId}`));
+    if(snap.exists()){
+      const adv = snap.val();
+      saveAdvLocal(adv);
+      return adv;
+    }
+  }catch(e){ console.warn('Firebase read failed:', e); }
+  // fallback local
+  const list = JSON.parse(localStorage.getItem('dnd_adventures')||'[]');
+  return list.find(a=>a.id===advId)||null;
+}
+
+async function saveCharData(data){
+  setSaving(true);
+  // Sauvegarde locale d'abord
+  if(currentAdv){
+    const c = currentAdv.chars.find(x=>x.id===charId);
+    if(c){ c.data = data; saveAdvLocal(currentAdv); }
+  }
+  // Puis Firebase
+  try{
+    await set(ref(db, `adventures/${advId}/chars`), currentAdv.chars);
+    showToast('✦ Sauvegardé');
+  }catch(e){
+    console.warn('Firebase write failed:', e);
+    showToast('⚠ Sauvegarde locale uniquement');
+  }
+  setSaving(false);
+}
+
+/* === STATS BUILDER === */
+const STAT_NAMES = ['Force','Puissance','Dextérité','Constitution','Intelligence','Perception','Charisme','Chance'];
+
+function buildStats(stats, subs){
+  const container = document.getElementById('stats-container');
+  container.innerHTML = '';
+  STAT_NAMES.forEach(name => {
+    const val  = stats[name] ?? 10;
+    const list = subs[name]  ?? [];
+    const block = document.createElement('div');
+    block.className = 'stat-block';
+    block.id = 'sb-'+name;
+    block.innerHTML = `
       <div class="stat-head">
-        <span class="stat-name">${s.name}</span>
+        <span class="stat-name">${name}</span>
         <div class="stat-val-wrap">
-          <input type="number" value="${statsData[s.name]||10}" min="1" max="30" inputmode="numeric" oninput="autoSave()">
-          <button class="btn-sub" onclick="addSub(${i})">+ détail</button>
+          <input type="number" value="${val}" id="stat-${name}"
+            oninput="scheduleSave()" style="font-size:20px;font-weight:700;font-family:'Cinzel',serif;
+            width:54px;text-align:center;background:rgba(255,255,255,.7);border:0.5px solid var(--border);
+            border-radius:6px;padding:4px 2px;color:var(--text);">
+          <button class="stat-add" onclick="addSub('${name}')">+ sous</button>
         </div>
       </div>
-      <div class="sub-zone" id="sub-${i}"></div>`;
-    g.appendChild(d);
-    // load subs
-    const subs=subsData[s.name]||[];
-    subs.forEach(sub=>addSubRow(i,sub.name,sub.val));
+      <div class="sub-list" id="subs-${name}"></div>`;
+    container.appendChild(block);
+    // sous-stats
+    list.forEach((sub,i) => addSubRow(name, sub.nom, sub.val, i));
   });
 }
-function addSub(idx){addSubRow(idx,'',5);}
-function addSubRow(idx,name,val){
-  const z=document.getElementById('sub-'+idx);
-  const r=document.createElement('div');
-  r.className='sub-row';
-  r.innerHTML=`
-    <input type="text" placeholder="Sous-catégorie…" value="${name}" oninput="autoSave()">
-    <input type="number" value="${val}" min="0" max="30" inputmode="numeric" oninput="autoSave()">
-    <button class="del-btn" onclick="this.parentElement.remove();autoSave()">✕</button>`;
-  z.appendChild(r);
+
+function addSubRow(statName, nom='', val=0, idx=null){
+  const list = document.getElementById('subs-'+statName);
+  if(!list) return;
+  const row = document.createElement('div');
+  row.className = 'sub-row';
+  row.innerHTML = `
+    <input type="text" placeholder="Sous-compétence" value="${nom}"
+      style="flex:1;font-size:13px;padding:6px 9px;background:rgba(255,255,255,.5);
+      border:0.5px solid var(--border);border-radius:6px;font-family:'Crimson Pro',serif;"
+      oninput="scheduleSave()">
+    <input type="number" value="${val}"
+      style="width:52px;font-size:14px;font-weight:600;text-align:center;padding:6px 4px;
+      background:rgba(255,255,255,.5);border:0.5px solid var(--border);border-radius:6px;
+      font-family:'Cinzel',serif;"
+      oninput="scheduleSave()">
+    <button class="sub-del" onclick="this.parentElement.remove();scheduleSave()">✕</button>`;
+  list.appendChild(row);
 }
 
-/* ====== AUTO SAVE ====== */
-let saveTimer=null;
-function autoSave(){
-  const dot=document.getElementById('save-dot');
-  dot.classList.add('saving');
-  clearTimeout(saveTimer);
-  saveTimer=setTimeout(()=>{
-    doSave();
-    dot.classList.remove('saving');
-    showToast();
-  },600);
-}
-function doSave(){
-  const data=collectData();
-  saveChar(data);
-}
-function showToast(){
-  const t=document.getElementById('toast');
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),1400);
-}
+window.addSub = function(statName){
+  addSubRow(statName);
+  scheduleSave();
+};
+
+/* === COLLECT DATA === */
 function collectData(){
-  const statsData={};const subsData={};
-  STATS.forEach((s,i)=>{
-    const inp=document.querySelector(`#sub-${i}`).parentElement.querySelector('.stat-val-wrap input');
-    statsData[s.name]=parseInt(inp.value)||10;
-    const rows=[...document.querySelectorAll(`#sub-${i} .sub-row`)];
-    subsData[s.name]=rows.map(r=>{
-      const inps=r.querySelectorAll('input');
-      return{name:inps[0].value,val:parseInt(inps[1].value)||0};
+  const stats={}, subs={};
+  STAT_NAMES.forEach(name=>{
+    stats[name] = Number(document.getElementById('stat-'+name)?.value||10);
+    const rows = document.querySelectorAll(`#subs-${name} .sub-row`);
+    subs[name] = [...rows].map(r=>{
+      const inps = r.querySelectorAll('input');
+      return { nom: inps[0]?.value||'', val: Number(inps[1]?.value||0) };
     });
   });
-  return{
-    age:v('i-age'),taille:v('i-taille'),sexe:sel('i-sexe'),attirance:sel('i-attirance'),
-    alignement:sel('i-alignement'),peur:v('i-peur'),desir:v('i-desir'),defaut:v('i-defaut'),
-    maladie:v('i-maladie'),bio:v('i-bio'),
-    notes_psycho:v('psycho-notes'),
-    mental:parseInt(document.getElementById('r-mental').value)||50,
-    stress:parseInt(document.getElementById('r-stress').value)||30,
-    hp_cur:parseInt(v('hp-cur'))||0,hp_max:parseInt(v('hp-max'))||100,
-    mp_cur:parseInt(v('mp-cur'))||0,mp_max:parseInt(v('mp-max'))||100,
-    end_cur:parseInt(v('end-cur'))||0,end_max:parseInt(v('end-max'))||100,
-    niveau:parseInt(v('v-niveau'))||1,vitesse:parseInt(v('v-vitesse'))||9,
-    initiative:parseInt(v('v-initiative'))||4,
-    or:parseInt(v('s-or'))||0,
-    stats:statsData,subs:subsData
+  return {
+    age:       gv('i-age'),
+    taille:    gv('i-taille'),
+    sexe:      gv('i-sexe'),
+    attirance: gv('i-attirance'),
+    alignement:gv('i-alignement'),
+    peur:      gv('i-peur'),
+    desir:     gv('i-desir'),
+    defaut:    gv('i-defaut'),
+    maladie:   gv('i-maladie'),
+    bio:       gv('i-bio'),
+    notes_psycho: gv('psycho-notes'),
+    mental:    Number(document.getElementById('r-mental')?.value||50),
+    stress:    Number(document.getElementById('r-stress')?.value||30),
+    niveau:    Number(gv('v-niveau')||1),
+    vitesse:   Number(gv('v-vitesse')||9),
+    initiative:Number(gv('v-initiative')||4),
+    hp_cur:    Number(gv('hp-cur')||0),
+    hp_max:    Number(gv('hp-max')||100),
+    mp_cur:    Number(gv('mp-cur')||0),
+    mp_max:    Number(gv('mp-max')||100),
+    end_cur:   Number(gv('end-cur')||0),
+    end_max:   Number(gv('end-max')||100),
+    or:        Number(gv('s-or')||0),
+    stats, subs
   };
 }
-function v(id){return document.getElementById(id)?.value||'';}
-function sel(id){return document.getElementById(id)?.value||'';}
+function gv(id){ return document.getElementById(id)?.value ?? ''; }
 
-/* ====== LOAD ====== */
-function loadChar(){
-  const c=getChar();
-  if(!c){alert('Personnage introuvable. Retour à l\'accueil.');location.href='index.html';return;}
-  document.getElementById('char-title').textContent=`${c.prenom} ${c.nom}`;
-  document.getElementById('char-sub').textContent=`${c.race||'Race'} · ${c.classe||'Classe'}`;
+/* === SCHEDULE SAVE === */
+window.scheduleSave = function(){
+  setSaving(true);
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    const data = collectData();
+    // Met à jour prenom/nom/race/classe dans l'objet char aussi
+    if(currentAdv){
+      const c = currentAdv.chars.find(x=>x.id===charId);
+      if(c){
+        c.prenom  = gv('i-prenom') || c.prenom;
+        c.nom     = gv('i-nom')    || c.nom;
+        c.race    = gv('i-race')   || c.race;
+        c.classe  = gv('i-classe') || c.classe;
+        c.data    = data;
+      }
+    }
+    await saveCharData(data);
+  }, 900);
+};
+
+/* === OR === */
+window.adjOr = function(delta){
+  const inp = document.getElementById('s-or');
+  inp.value = Math.max(0, Number(inp.value)+delta);
+  scheduleSave();
+};
+
+/* === LOAD === */
+async function loadChar(){
+  const adv = await getAdvFull();
+  if(!adv){ alert('Aventure introuvable.'); location.href='index.html'; return; }
+  currentAdv = adv;
+  const c = adv.chars.find(x=>x.id===charId);
+  if(!c){ alert('Personnage introuvable.'); location.href='index.html'; return; }
+
+  document.getElementById('char-title').textContent = `${c.prenom} ${c.nom}`;
+  document.getElementById('char-sub').textContent   = `${c.race||'Race'} · ${c.classe||'Classe'}`;
+
   if(isGM){
-    document.getElementById('gm-badge').style.display='flex';
-    document.getElementById('gm-controls').style.display='block';
+    document.getElementById('gm-badge').style.display = 'flex';
+    document.getElementById('gm-controls').style.display = 'block';
   }
-  const d=c.data||{};
-  // identity
-  setV('i-prenom',c.prenom);setV('i-nom',c.nom);
-  setSel('i-race',c.race);setSel('i-classe',c.classe);
-  setV('i-age',d.age||'');setV('i-taille',d.taille||'');
-  setSel('i-sexe',d.sexe||'');setSel('i-attirance',d.attirance||'');
-  setSel('i-alignement',d.alignement||'');
-  setV('i-peur',d.peur||'');setV('i-desir',d.desir||'');
-  setV('i-defaut',d.defaut||'');setV('i-maladie',d.maladie||'');
-  setV('i-bio',d.bio||'');
-  // psycho
-  setV('psycho-notes',d.notes_psycho||'');
-  const mental=d.mental??50,stress=d.stress??30;
-  document.getElementById('r-mental').value=mental;
-  document.getElementById('r-stress').value=stress;
-  updBar('mental',mental,100);updBar('stress',stress,100);
-  // vitales
-  setV('v-niveau',d.niveau||1);
-  setV('hp-cur',d.hp_cur??80);setV('hp-max',d.hp_max??100);
-  setV('mp-cur',d.mp_cur??60);setV('mp-max',d.mp_max??100);
-  setV('end-cur',d.end_cur??70);setV('end-max',d.end_max??100);
-  updBarInp('hp',d.hp_cur??80,d.hp_max??100);
-  updBarInp('mp',d.mp_cur??60,d.mp_max??100);
-  updBarInp('end',d.end_cur??70,d.end_max??100);
-  setV('v-vitesse',d.vitesse||9);setV('v-initiative',d.initiative||4);
-  // stats
-  const stats=d.stats||{};const subs=d.subs||{};
-  buildStats(stats,subs);
-  setV('s-or',d.or||0);
+
+  const d = c.data || {};
+
+  // Identité
+  sv('i-prenom', c.prenom); sv('i-nom', c.nom);
+  setSel('i-race', c.race); setSel('i-classe', c.classe);
+  sv('i-age', d.age||'');   sv('i-taille', d.taille||'');
+  setSel('i-sexe', d.sexe||'');
+  setSel('i-attirance', d.attirance||'');
+  setSel('i-alignement', d.alignement||'');
+  sv('i-peur', d.peur||''); sv('i-desir', d.desir||'');
+  sv('i-defaut', d.defaut||''); sv('i-maladie', d.maladie||'');
+  sv('i-bio', d.bio||'');
+
+  // Psyché
+  sv('psycho-notes', d.notes_psycho||'');
+  const mental = d.mental??50, stress = d.stress??30;
+  document.getElementById('r-mental').value = mental;
+  document.getElementById('r-stress').value = stress;
+  updBar('mental', mental, 100);
+  updBar('stress', stress, 100);
+
+  // Vitales
+  sv('v-niveau', d.niveau||1);
+  sv('hp-cur', d.hp_cur??80); sv('hp-max', d.hp_max??100);
+  sv('mp-cur', d.mp_cur??60); sv('mp-max', d.mp_max??100);
+  sv('end-cur', d.end_cur??70); sv('end-max', d.end_max??100);
+  updBarInp('hp',  d.hp_cur??80,  d.hp_max??100);
+  updBarInp('mp',  d.mp_cur??60,  d.mp_max??100);
+  updBarInp('end', d.end_cur??70, d.end_max??100);
+  sv('v-vitesse', d.vitesse||9);
+  sv('v-initiative', d.initiative||4);
+
+  // Stats
+  buildStats(d.stats||{}, d.subs||{});
+
+  // Or
+  sv('s-or', d.or||0);
+
   updAvatar();
-}
-function setV(id,val){const el=document.getElementById(id);if(el)el.value=val;}
-function setSel(id,val){const el=document.getElementById(id);if(el&&val){const o=[...el.options].find(o=>o.value===val||o.text===val);if(o)el.value=o.value;}}
 
-/* ====== GM DELETE ====== */
-function deleteChar(){
-  if(!confirm('Supprimer définitivement ce personnage ?'))return;
-  const list=JSON.parse(localStorage.getItem('dnd_adventures')||'[]');
-  const ai=list.findIndex(a=>a.id===advId);
-  if(ai<0)return;
-  list[ai].chars=list[ai].chars.filter(c=>c.id!==charId);
-  localStorage.setItem('dnd_adventures',JSON.stringify(list));
+  // Écoute temps réel Firebase (autres joueurs/MJ)
+  onValue(ref(db, `adventures/${advId}/chars`), snap=>{
+    if(!snap.exists()) return;
+    const chars = snap.val();
+    const updated = chars.find(x=>x.id===charId);
+    if(updated && currentAdv){
+      currentAdv.chars = chars;
+      // Ne recharge PAS si on est en train de taper (saveTimer actif)
+      if(!saveTimer) reloadFields(updated);
+    }
+  });
+}
+
+function reloadFields(c){
+  // Refresh discret des barres vitales seulement si non focus
+  const focused = document.activeElement;
+  const d = c.data||{};
+  if(focused?.id !== 'hp-cur' && focused?.id !== 'hp-max')
+    { sv('hp-cur',d.hp_cur??80); sv('hp-max',d.hp_max??100); updBarInp('hp',d.hp_cur??80,d.hp_max??100); }
+  if(focused?.id !== 'mp-cur' && focused?.id !== 'mp-max')
+    { sv('mp-cur',d.mp_cur??60); sv('mp-max',d.mp_max??100); updBarInp('mp',d.mp_cur??60,d.mp_max??100); }
+  if(focused?.id !== 'end-cur' && focused?.id !== 'end-max')
+    { sv('end-cur',d.end_cur??70); sv('end-max',d.end_max??100); updBarInp('end',d.end_cur??70,d.end_max??100); }
+}
+
+function sv(id,val){ const el=document.getElementById(id); if(el) el.value=val; }
+function setSel(id,val){
+  const el=document.getElementById(id);
+  if(el&&val){ const o=[...el.options].find(o=>o.value===val||o.text===val); if(o) el.value=o.value; }
+}
+
+/* === GM DELETE === */
+window.deleteChar = async function(){
+  if(!confirm('Supprimer définitivement ce personnage ?')) return;
+  const adv = await getAdvFull();
+  if(!adv) return;
+  adv.chars = adv.chars.filter(c=>c.id!==charId);
+  try{
+    await set(ref(db,`adventures/${advId}`), adv);
+    saveAdvLocal(adv);
+  }catch(e){ saveAdvLocal(adv); }
   location.href='index.html';
-}
+};
 
-/* ====== INIT ====== */
-if(!advId||!charId){alert('Lien invalide.');location.href='index.html';}
+/* === INIT === */
+if(!advId||!charId){ alert('Lien invalide.'); location.href='index.html'; }
 else loadChar();
 </script>
 </body>
