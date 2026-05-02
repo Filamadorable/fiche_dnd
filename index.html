@@ -265,24 +265,15 @@ const db  = getDatabase(app);
 onValue(ref(db, 'adventures'), (snapshot) => {
   const data = snapshot.val();
   if(!data) return;
-  
+
   let localAdvs = JSON.parse(localStorage.getItem('dnd_adventures') || '[]');
-  
   Object.values(data).forEach(fbAdv => {
     const idx = localAdvs.findIndex(a => a.id === fbAdv.id);
-    if(idx === -1){
-      localAdvs.push(fbAdv);
-    } else {
-      localAdvs[idx] = fbAdv;
-    }
+    if(idx === -1) localAdvs.push(fbAdv);
+    else localAdvs[idx] = fbAdv;
   });
-  
   localStorage.setItem('dnd_adventures', JSON.stringify(localAdvs));
-  
-  // Re-render seulement si on est sur la home
-  if(typeof renderHome === 'function' && !currentAdv){
-    renderHome();
-  }
+
 });
 
 /* ====== STATE ====== */
@@ -427,7 +418,6 @@ window.createAdventure = async function(){
     chars:[]
   };
   await saveAdv(adv);
-  set(ref(db, 'adventures/' + adv.id), adv).catch(e => console.warn(e)); 
   hideModal('modal-create-adv');
   document.getElementById('adv-name-inp').value='';
   document.getElementById('adv-mdp-inp').value='';
@@ -442,8 +432,10 @@ window._selectAdv = async function(id){
   const adv = await getAdv(id);
   if(!adv){alert('Aventure introuvable.');return;}
   renderAdventureWith(adv);
-  // Écoute temps réel
+  
+  let firstCall = true; // ignore le premier fire immédiat
   watchAdv(id, updatedAdv => {
+    if(firstCall){ firstCall=false; return; }
     renderAdventureWith(updatedAdv);
     showSyncBanner();
   });
