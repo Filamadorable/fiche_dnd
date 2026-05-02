@@ -261,6 +261,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db  = getDatabase(app);
 
+// Écoute temps réel toutes les aventures
+onValue(ref(db, 'adventures'), (snapshot) => {
+  const data = snapshot.val();
+  if(!data) return;
+  
+  let localAdvs = JSON.parse(localStorage.getItem('advs') || '[]');
+  
+  Object.values(data).forEach(fbAdv => {
+    const idx = localAdvs.findIndex(a => a.id === fbAdv.id);
+    if(idx === -1){
+      localAdvs.push(fbAdv);
+    } else {
+      localAdvs[idx] = fbAdv;
+    }
+  });
+  
+  localStorage.setItem('advs', JSON.stringify(localAdvs));
+  
+  // Re-render seulement si on est sur la home
+  if(typeof renderHome === 'function' && !currentAdv){
+    renderHome();
+  }
+});
+
 /* ====== STATE ====== */
 let currentAdv  = null;
 let isGM        = false;
@@ -402,6 +426,7 @@ window.createAdventure = async function(){
     chars:[]
   };
   await saveAdv(adv);
+  set(ref(db, 'adventures/' + adv.id), adv).catch(e => console.warn(e)); 
   hideModal('modal-create-adv');
   document.getElementById('adv-name-inp').value='';
   document.getElementById('adv-mdp-inp').value='';
