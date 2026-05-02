@@ -380,17 +380,20 @@ async function renderHome(){
     el.innerHTML='<div class="empty-state">Aucune aventure créée. Commence une nouvelle quête !</div>';
     return;
   }
-  el.innerHTML=list.map(a=>`
+  el.innerHTML=list.map(a=>{
+    const chars = a.chars||[];
+    return `
     <div class="adv-item" onclick="window._selectAdv('${a.id}')">
       <div>
         <div class="adv-name">${a.name}</div>
-        <div class="adv-meta">${a.chars.length} personnage${a.chars.length!==1?'s':''} · créée le ${a.created}</div>
+        <div class="adv-meta">${chars.length} personnage${chars.length!==1?'s':''} · créée le ${a.created}</div>
       </div>
       <div style="display:flex;align-items:center;gap:8px">
-        <span class="adv-badge">${a.chars.length} joueur${a.chars.length!==1?'s':''}</span>
+        <span class="adv-badge">${chars.length} joueur${chars.length!==1?'s':''}</span>
         <span class="adv-arrow">›</span>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 window.renderHome = renderHome;
 
