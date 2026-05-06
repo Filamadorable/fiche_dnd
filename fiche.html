@@ -20,6 +20,7 @@
   --amber:#ba7517;--amber2:#fac775;
   --blue:#185fa5;--blue2:#85b7eb;
   --pink:#993556;--pink2:#ed93b1;
+  --steel:#4a5568;--steel2:#a0aec0;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{background:#0e0b06;background-image:radial-gradient(ellipse at 20% 20%,rgba(80,40,10,0.4) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(60,20,10,0.35) 0%,transparent 55%);min-height:100vh;font-family:'Crimson Pro',Georgia,serif;color:var(--text);padding-bottom:40px;}
@@ -33,62 +34,99 @@ body{background:#0e0b06;background-image:radial-gradient(ellipse at 20% 20%,rgba
 .gm-badge{font-size:10px;font-family:'Cinzel',serif;background:rgba(160,120,40,0.2);color:var(--gold2);border:0.5px solid rgba(160,120,40,.4);border-radius:4px;padding:2px 7px;flex-shrink:0;display:none;}
 .tabs{display:flex;overflow-x:auto;gap:0;background:rgba(26,18,8,0.95);border-bottom:0.5px solid rgba(140,100,40,0.25);-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{flex-shrink:0;padding:11px 16px;font-size:11px;font-weight:600;color:var(--text3);cursor:pointer;border:none;background:none;font-family:'Cinzel',serif;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;letter-spacing:.07em;text-transform:uppercase;}
+.tab{flex-shrink:0;padding:11px 13px;font-size:10px;font-weight:600;color:var(--text3);cursor:pointer;border:none;background:none;font-family:'Cinzel',serif;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;letter-spacing:.06em;text-transform:uppercase;}
 .tab.active{color:var(--gold2);border-bottom-color:var(--gold);}
-.page{display:none;padding:14px;max-width:540px;margin:0 auto;}
+.page{display:none;padding:14px;max-width:520px;margin:0 auto;}
 .page.active{display:block;}
-.card{background:var(--bg-card);border:0.5px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:14px;position:relative;overflow:hidden;}
-.card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.07) 0%,transparent 60%);pointer-events:none;}
-.card:last-child{margin-bottom:0;}
-.sec{font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blood);margin-bottom:14px;padding-bottom:8px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:8px;}
-.sec::before{content:'✦';font-size:8px;opacity:.6;}
-.f{display:flex;flex-direction:column;gap:4px;margin-bottom:11px;}
+.card{background:var(--bg-card);border:0.5px solid var(--border);border-radius:var(--radius);padding:15px;margin-bottom:12px;box-shadow:0 2px 14px var(--shadow);}
+.sec{font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:.15em;color:var(--text3);text-transform:uppercase;margin-bottom:13px;padding-bottom:7px;border-bottom:0.5px solid var(--border);}
+.f{margin-bottom:11px;}
 .f:last-child{margin-bottom:0;}
-.f label{font-size:10px;color:var(--text2);letter-spacing:.08em;text-transform:uppercase;font-family:'Cinzel',serif;}
-.f input,.f select,.f textarea{font-size:14px;font-family:'Crimson Pro',serif;background:rgba(255,255,255,0.5);border:0.5px solid var(--border);border-radius:7px;padding:9px 11px;color:var(--text);width:100%;-webkit-appearance:none;appearance:none;}
-.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.75);}
-.f textarea{resize:vertical;min-height:64px;line-height:1.5;}
+.f label{display:block;font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;}
+.f input,.f select,.f textarea{width:100%;padding:9px 11px;border:0.5px solid rgba(140,100,40,0.3);border-radius:7px;font-family:'Crimson Pro',serif;font-size:15px;background:rgba(255,255,255,.75);color:var(--text);outline:none;-webkit-appearance:none;}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--gold);background:rgba(255,255,255,.95);}
+.f textarea{resize:vertical;min-height:70px;line-height:1.5;}
 .f select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239c7a50' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px;}
 .f select option{background:#f5eedc;}
+.f .autre-input{margin-top:6px;display:none;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
-.avatar{width:58px;height:58px;border-radius:50%;background:rgba(139,26,26,0.1);border:2px solid rgba(139,26,26,.3);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;margin:0 auto 14px;}
+.avatar{width:62px;height:62px;border-radius:50%;background:rgba(139,26,26,0.1);border:2px solid rgba(139,26,26,.3);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;margin:0 auto 14px;}
+
+/* BARRES VITALES */
 .bar-row{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:4px;}
 .bar-track{background:rgba(0,0,0,.12);border-radius:5px;height:10px;overflow:hidden;}
 .bar-fill{height:100%;border-radius:5px;transition:width .25s;}
-.b-hp{background:#5dcaa5;}.b-mp{background:#afa9ec;}.b-end{background:#f0997b;}.b-stress{background:#fac775;}.b-mental{background:#85b7eb;}
-input[type=range]{width:100%;margin-top:7px;accent-color:var(--gold);height:22px;}
-.vital-box{background:rgba(255,255,255,0.4);border:0.5px solid var(--border);border-radius:8px;padding:12px 13px;margin-bottom:9px;}
+.b-hp{background:linear-gradient(90deg,#3aaa80,#5dcaa5);}
+.b-mp{background:linear-gradient(90deg,#7b72d6,#afa9ec);}
+.b-end{background:linear-gradient(90deg,#c0552a,#f0997b);}
+.b-stress{background:linear-gradient(90deg,#d4920a,#fac775);}
+.b-mental{background:linear-gradient(90deg,#2a7fc0,#85b7eb);}
+.b-armure{background:linear-gradient(90deg,#606c7c,#a0aec0);}
+input[type=range]{width:100%;margin-top:8px;accent-color:var(--gold);height:22px;}
+
+.vital-box{background:rgba(255,255,255,0.42);border:0.5px solid var(--border);border-radius:9px;padding:12px 13px;margin-bottom:9px;}
 .vital-box:last-child{margin-bottom:0;}
-.vital-lbl{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-family:'Cinzel',serif;}
-.vital-num-row{display:flex;align-items:center;gap:6px;margin-top:7px;}
-.vital-num-row input{font-size:18px;font-weight:700;background:rgba(255,255,255,.6);border:0.5px solid var(--border);border-radius:6px;text-align:center;width:66px;padding:6px 4px;font-family:'Cinzel',serif;color:var(--text);}
-.vital-sep{font-size:13px;color:var(--text3);}
-.stat-block{background:rgba(255,255,255,0.38);border:0.5px solid var(--border);border-radius:9px;padding:13px;margin-bottom:10px;}
+.vital-lbl{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.09em;margin-bottom:8px;font-weight:700;}
+.vital-nums{display:flex;align-items:center;gap:7px;margin-top:9px;}
+.vital-nums span{font-size:12px;color:var(--text3);font-weight:600;}
+.vital-nums input{flex:1;font-size:15px;font-weight:700;font-family:'Cinzel',serif;text-align:center;padding:6px 4px;background:rgba(255,255,255,.7);border:0.5px solid var(--border);border-radius:6px;color:var(--text);}
+
+/* STATS */
+.stat-block{background:rgba(255,255,255,0.38);border:0.5px solid var(--border);border-radius:8px;padding:11px 12px;margin-bottom:8px;}
 .stat-block:last-child{margin-bottom:0;}
-.stat-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.stat-name{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blood);}
-.stat-val-wrap{display:flex;align-items:center;gap:5px;}
-.stat-val-wrap input{font-size:20px;font-weight:700;font-family:'Cinzel',serif;width:54px;text-align:center;background:rgba(255,255,255,.7);border:0.5px solid var(--border);border-radius:6px;padding:4px 2px;color:var(--text);}
-.stat-add{font-size:13px;color:var(--gold);background:rgba(160,120,40,.12);border:0.5px solid rgba(160,120,40,.25);border-radius:5px;padding:4px 9px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:.04em;}
+.stat-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.stat-name{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--text);}
+.stat-val-wrap{display:flex;align-items:center;gap:8px;}
+.stat-add{font-size:11px;font-family:'Cinzel',serif;background:rgba(160,120,40,0.12);color:var(--gold);border:0.5px solid rgba(160,120,40,.3);border-radius:5px;padding:4px 9px;cursor:pointer;}
 .stat-add:active{background:rgba(160,120,40,.25);}
 .sub-list{display:flex;flex-direction:column;gap:6px;}
 .sub-row{display:flex;align-items:center;gap:7px;}
-.sub-row input:first-child{flex:1;font-size:13px;padding:6px 9px;}
-.sub-row input:last-child{width:52px;font-size:14px;font-weight:600;text-align:center;padding:6px 4px;}
+.sub-row input:first-child{flex:1;font-size:13px;padding:6px 9px;background:rgba(255,255,255,.5);border:0.5px solid var(--border);border-radius:6px;font-family:'Crimson Pro',serif;}
+.sub-row input:last-child{width:52px;font-size:14px;font-weight:600;text-align:center;padding:6px 4px;background:rgba(255,255,255,.5);border:0.5px solid var(--border);border-radius:6px;font-family:'Cinzel',serif;}
 .sub-del{font-size:16px;color:var(--text3);background:none;border:none;cursor:pointer;padding:4px 5px;border-radius:5px;flex-shrink:0;}
 .sub-del:active{background:rgba(139,26,26,.12);color:var(--blood);}
+
+/* OR */
 .or-row{display:flex;align-items:center;gap:10px;}
-.or-row input{flex:1;font-size:20px;font-weight:700;font-family:'Cinzel',serif;text-align:center;}
-.or-btn{width:40px;height:40px;border-radius:8px;font-size:20px;font-weight:700;border:0.5px solid var(--border);background:rgba(255,255,255,.5);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;}
+.or-row input{flex:1;font-size:22px;font-weight:700;font-family:'Cinzel',serif;text-align:center;padding:10px;border:0.5px solid var(--border);border-radius:8px;background:rgba(255,255,255,.7);}
+.or-btn{width:44px;height:44px;border-radius:8px;font-size:22px;font-weight:700;border:0.5px solid var(--border);background:rgba(255,255,255,.5);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;}
 .or-btn:active{background:rgba(160,120,40,.15);}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 20px;border-radius:8px;font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:.08em;cursor:pointer;border:none;transition:all .18s;text-transform:uppercase;margin-bottom:10px;}
+
+/* BTNS */
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 20px;border-radius:8px;font-family:'Cinzel',serif;font-size:12px;font-weight:600;letter-spacing:.08em;cursor:pointer;border:none;transition:all .18s;text-transform:uppercase;margin-bottom:10px;}
 .btn:last-child{margin-bottom:0;}
-.btn-primary{background:linear-gradient(135deg,var(--blood) 0%,var(--blood2) 100%);color:#fff;box-shadow:0 2px 12px rgba(139,26,26,0.35);}
+.btn-primary{background:linear-gradient(135deg,var(--blood) 0%,var(--blood2) 100%);color:#fff;box-shadow:0 2px 12px rgba(139,26,26,0.3);}
 .btn-danger{background:linear-gradient(135deg,#7a1010,#b02020);color:#fff;}
-.btn-ghost{background:transparent;border:0.5px solid var(--border);color:var(--text2);}
-.gm-panel{background:rgba(160,120,40,0.08);border:0.5px solid rgba(160,120,40,.25);border-radius:10px;padding:14px;margin-bottom:14px;display:none;}
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(26,18,8,0.92);color:var(--parch);font-family:'Cinzel',serif;font-size:12px;letter-spacing:.07em;padding:10px 22px;border-radius:30px;border:0.5px solid rgba(140,100,40,.4);opacity:0;pointer-events:none;transition:all .3s;z-index:300;white-space:nowrap;}
+.btn-add{background:rgba(160,120,40,0.1);color:var(--gold);border:0.5px solid rgba(160,120,40,.3);font-size:12px;padding:10px 14px;}
+.btn-add:active{background:rgba(160,120,40,.2);}
+
+/* IMMUNITÉS */
+.immuno-section{margin-top:10px;}
+.immuno-hint{font-size:11px;color:var(--teal);font-style:italic;margin-bottom:8px;padding:5px 8px;background:rgba(29,122,92,0.08);border-radius:5px;border-left:2px solid var(--teal2);}
+.immuno-list{display:flex;flex-direction:column;gap:6px;}
+.immuno-row{display:flex;align-items:center;gap:7px;}
+.immuno-row input{flex:1;font-size:13px;padding:7px 10px;background:rgba(93,202,165,0.1);border:0.5px solid rgba(29,122,92,.25);border-radius:6px;font-family:'Crimson Pro',serif;color:var(--teal);}
+.immuno-del{font-size:15px;color:var(--text3);background:none;border:none;cursor:pointer;padding:4px 6px;border-radius:5px;flex-shrink:0;}
+.immuno-del:active{color:var(--blood);}
+
+/* SORTS */
+.sort-list{display:flex;flex-direction:column;gap:9px;}
+.sort-card{background:rgba(83,74,183,0.07);border:0.5px solid rgba(83,74,183,.2);border-radius:8px;padding:10px 11px;}
+.sort-head{display:flex;align-items:center;gap:7px;margin-bottom:7px;}
+.sort-name-inp{flex:1;font-size:14px;padding:6px 9px;background:rgba(255,255,255,.6);border:0.5px solid rgba(83,74,183,.2);border-radius:6px;font-family:'Crimson Pro',serif;}
+.sort-cost-wrap{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.sort-cost-wrap span{font-size:10px;color:var(--purple);font-weight:700;white-space:nowrap;}
+.sort-cost-inp{width:50px;font-size:14px;font-weight:700;font-family:'Cinzel',serif;text-align:center;padding:5px 3px;background:rgba(175,169,236,0.2);border:0.5px solid rgba(83,74,183,.3);border-radius:6px;color:var(--purple);}
+.sort-del{font-size:15px;color:var(--text3);background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0;}
+.sort-del:active{color:var(--blood);}
+.sort-desc{width:100%;font-size:13px;padding:6px 9px;background:rgba(255,255,255,.5);border:0.5px solid rgba(140,100,40,.2);border-radius:6px;font-family:'Crimson Pro',serif;resize:vertical;min-height:50px;line-height:1.4;}
+
+/* GM PANEL */
+.gm-panel-card{background:rgba(160,120,40,0.07);border:0.5px solid rgba(160,120,40,.25);border-radius:var(--radius);padding:15px;margin-bottom:12px;}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(26,20,16,0.93);color:var(--parch2);font-size:13px;font-family:'Cinzel',serif;padding:10px 22px;border-radius:22px;opacity:0;transition:all .3s;pointer-events:none;z-index:999;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 </style>
 </head>
@@ -97,49 +135,33 @@ input[type=range]{width:100%;margin-top:7px;accent-color:var(--gold);height:22px
 <div class="top-bar">
   <a href="index.html">←</a>
   <div class="top-bar-center">
-    <h1 id="char-title">Personnage</h1>
-    <p id="char-sub">Race · Classe</p>
+    <h1 id="char-title">Fiche de Personnage</h1>
+    <p id="char-sub">Chargement…</p>
   </div>
-  <div class="gm-badge" id="gm-badge">MJ</div>
-  <div class="save-dot" id="save-dot" title="Sauvegarde"></div>
+  <span class="gm-badge" id="gm-badge">MJ</span>
+  <div class="save-dot" id="save-dot"></div>
 </div>
 
 <div class="tabs">
   <button class="tab active" onclick="switchTab(0)">Identité</button>
-  <button class="tab" onclick="switchTab(1)">Vitales</button>
+  <button class="tab" onclick="switchTab(1)">Vitalité</button>
   <button class="tab" onclick="switchTab(2)">Stats</button>
-  <button class="tab" onclick="switchTab(3)">Psyché</button>
-  <button class="tab" onclick="switchTab(4)">Richesse</button>
-  <button class="tab" onclick="switchTab(5)">MJ</button>
+  <button class="tab" onclick="switchTab(3)">Magie</button>
+  <button class="tab" onclick="switchTab(4)">Équipement</button>
+  <button class="tab" onclick="switchTab(5)">Richesse</button>
+  <button class="tab" onclick="switchTab(6)">MJ</button>
 </div>
 
-<!-- PAGE 0 : IDENTITÉ -->
+<!-- ═══════════════════════════════════════════ PAGE 0 : IDENTITÉ -->
 <div class="page active" id="page-0">
+  <div class="card" style="text-align:center;">
+    <div class="avatar" id="avatar-el">⚔️</div>
+    <div style="font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:var(--text);" id="full-name">—</div>
+    <div style="font-size:13px;color:var(--text3);font-style:italic;margin-top:4px;" id="race-classe">—</div>
+  </div>
+
   <div class="card">
-    <div id="char-avatar" class="avatar">⚔️</div>
-    <div class="sec">Identité</div>
-    <div class="grid-2">
-      <div class="f"><label>Prénom</label><input type="text" id="i-prenom" oninput="scheduleSave()"></div>
-      <div class="f"><label>Nom</label><input type="text" id="i-nom" oninput="scheduleSave()"></div>
-    </div>
-    <div class="grid-2">
-      <div class="f">
-        <label>Race</label>
-        <select id="i-race" onchange="updAvatar();scheduleSave()">
-          <option value="">—</option><option>Humain</option><option>Elfe</option><option>Nain</option>
-          <option>Halfelin</option><option>Gnome</option><option>Semi-orque</option>
-          <option>Tieffelin</option><option>Draconique</option><option>Aasimar</option><option>Autre</option>
-        </select>
-      </div>
-      <div class="f">
-        <label>Classe</label>
-        <select id="i-classe" onchange="updAvatar();scheduleSave()">
-          <option value="">—</option><option>Guerrier</option><option>Mage</option><option>Rôdeur</option>
-          <option>Voleur</option><option>Paladin</option><option>Clerc</option><option>Barde</option>
-          <option>Druide</option><option>Moine</option><option>Sorcier</option><option>Autre</option>
-        </select>
-      </div>
-    </div>
+    <div class="sec">État Civil</div>
     <div class="grid-2">
       <div class="f"><label>Âge</label><input type="text" id="i-age" placeholder="28 ans" oninput="scheduleSave()"></div>
       <div class="f"><label>Taille</label><input type="text" id="i-taille" placeholder="1m78" oninput="scheduleSave()"></div>
@@ -147,17 +169,19 @@ input[type=range]{width:100%;margin-top:7px;accent-color:var(--gold);height:22px
     <div class="grid-2">
       <div class="f">
         <label>Genre</label>
-        <select id="i-sexe" onchange="scheduleSave()">
+        <select id="i-sexe" onchange="toggleAutre('i-sexe','i-sexe-autre');scheduleSave()">
           <option value="">—</option><option>Homme</option><option>Femme</option>
           <option>Non-binaire</option><option>Autre</option>
         </select>
+        <input type="text" id="i-sexe-autre" class="autre-input" placeholder="Préciser…" oninput="scheduleSave()">
       </div>
       <div class="f">
         <label>Attirance</label>
-        <select id="i-attirance" onchange="scheduleSave()">
+        <select id="i-attirance" onchange="toggleAutre('i-attirance','i-attirance-autre');scheduleSave()">
           <option value="">—</option><option>Hétérosexuel·le</option><option>Homosexuel·le</option>
           <option>Bisexuel·le</option><option>Asexuel·le</option><option>Autre</option>
         </select>
+        <input type="text" id="i-attirance-autre" class="autre-input" placeholder="Préciser…" oninput="scheduleSave()">
       </div>
     </div>
     <div class="f">
@@ -170,52 +194,123 @@ input[type=range]{width:100%;margin-top:7px;accent-color:var(--gold);height:22px
       </select>
     </div>
   </div>
+
   <div class="card">
     <div class="sec">Traits & Histoire</div>
-    <div class="f"><label>Plus grande peur</label><input type="text" id="i-peur" oninput="scheduleSave()"></div>
-    <div class="f"><label>Désir profond</label><input type="text" id="i-desir" oninput="scheduleSave()"></div>
-    <div class="f"><label>Défaut principal</label><input type="text" id="i-defaut" oninput="scheduleSave()"></div>
-    <div class="f"><label>Maladie / Affliction</label><input type="text" id="i-maladie" oninput="scheduleSave()"></div>
-    <div class="f"><label>Biographie</label><textarea id="i-bio" placeholder="Histoire du personnage…" oninput="scheduleSave()"></textarea></div>
+    <div class="f"><label>Plus grande peur</label><input type="text" id="i-peur" placeholder="Le néant…" oninput="scheduleSave()"></div>
+    <div class="f"><label>Plus grand désir</label><input type="text" id="i-desir" placeholder="La gloire…" oninput="scheduleSave()"></div>
+    <div class="f"><label>Défaut principal</label><input type="text" id="i-defaut" placeholder="L'orgueil…" oninput="scheduleSave()"></div>
+    <div class="f"><label>Maladie / Malédiction</label><input type="text" id="i-maladie" placeholder="Aucune…" oninput="scheduleSave()"></div>
+    <div class="f"><label>Biographie</label><textarea id="i-bio" placeholder="Son histoire…" oninput="scheduleSave()"></textarea></div>
   </div>
 </div>
 
-<!-- PAGE 1 : VITALES -->
+<!-- ═══════════════════════════════════════════ PAGE 1 : VITALITÉ -->
 <div class="page" id="page-1">
   <div class="card">
-    <div class="sec">Points de Vie & Énergie</div>
+    <div class="sec">Points Vitaux</div>
+
+    <!-- PV -->
     <div class="vital-box">
       <div class="vital-lbl">❤️ Points de Vie</div>
-      <div class="bar-row"><span id="lbl-hp">80 / 100</span></div>
+      <div class="bar-row">
+        <span id="lbl-hp-cur">80</span>
+        <span id="lbl-hp-max">/ 100</span>
+      </div>
       <div class="bar-track"><div class="bar-fill b-hp" id="bar-hp" style="width:80%"></div></div>
-      <div class="vital-num-row">
-        <input type="number" id="hp-cur" value="80" min="0" oninput="updBarInp('hp',this.value,document.getElementById('hp-max').value);scheduleSave()">
-        <span class="vital-sep">/</span>
-        <input type="number" id="hp-max" value="100" min="1" oninput="updBarInp('hp',document.getElementById('hp-cur').value,this.value);scheduleSave()">
+      <div class="vital-nums">
+        <input type="number" id="hp-cur" value="80" min="0"
+          oninput="updBarInp('hp',this.value,document.getElementById('hp-max').value);scheduleSave()">
+        <span>/</span>
+        <input type="number" id="hp-max" value="100" min="1"
+          oninput="updBarInp('hp',document.getElementById('hp-cur').value,this.value);scheduleSave()">
       </div>
     </div>
-    <div class="vital-box">
-      <div class="vital-lbl">💧 Points de Magie</div>
-      <div class="bar-row"><span id="lbl-mp">60 / 100</span></div>
-      <div class="bar-track"><div class="bar-fill b-mp" id="bar-mp" style="width:60%"></div></div>
-      <div class="vital-num-row">
-        <input type="number" id="mp-cur" value="60" min="0" oninput="updBarInp('mp',this.value,document.getElementById('mp-max').value);scheduleSave()">
-        <span class="vital-sep">/</span>
-        <input type="number" id="mp-max" value="100" min="1" oninput="updBarInp('mp',document.getElementById('mp-cur').value,this.value);scheduleSave()">
-      </div>
-    </div>
-    <div class="vital-box">
-      <div class="vital-lbl">🔥 Endurance</div>
-      <div class="bar-row"><span id="lbl-end">70 / 100</span></div>
-      <div class="bar-track"><div class="bar-fill b-end" id="bar-end" style="width:70%"></div></div>
-      <div class="vital-num-row">
-        <input type="number" id="end-cur" value="70" min="0" oninput="updBarInp('end',this.value,document.getElementById('end-max').value);scheduleSave()">
-        <span class="vital-sep">/</span>
 
-        <input type="number" id="end-max" value="100" min="1" oninput="updBarInp('end',document.getElementById('end-cur').value,this.value);scheduleSave()">
+    <!-- ARMURE -->
+    <div class="vital-box">
+      <div class="vital-lbl">🛡️ Armure</div>
+      <div class="bar-row">
+        <span id="lbl-armure-cur">0</span>
+        <span id="lbl-armure-max">/ 50</span>
       </div>
+      <div class="bar-track"><div class="bar-fill b-armure" id="bar-armure" style="width:0%"></div></div>
+      <div class="vital-nums">
+        <input type="number" id="armure-cur" value="0" min="0"
+          oninput="updBarInp('armure',this.value,document.getElementById('armure-max').value);scheduleSave()">
+        <span>/</span>
+        <input type="number" id="armure-max" value="50" min="1"
+          oninput="updBarInp('armure',document.getElementById('armure-cur').value,this.value);scheduleSave()">
+      </div>
+    </div>
+
+    <!-- MANA -->
+    <div class="vital-box">
+      <div class="vital-lbl">💧 Mana</div>
+      <div class="bar-row">
+        <span id="lbl-mp-cur">60</span>
+        <span id="lbl-mp-max">/ 100</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill b-mp" id="bar-mp" style="width:60%"></div></div>
+      <div class="vital-nums">
+        <input type="number" id="mp-cur" value="60" min="0"
+          oninput="updBarInp('mp',this.value,document.getElementById('mp-max').value);scheduleSave()">
+        <span>/</span>
+        <input type="number" id="mp-max" value="100" min="1"
+          oninput="updBarInp('mp',document.getElementById('mp-cur').value,this.value);scheduleSave()">
+      </div>
+    </div>
+
+    <!-- ENDURANCE -->
+    <div class="vital-box">
+      <div class="vital-lbl">⚡ Endurance</div>
+      <div class="bar-row">
+        <span id="lbl-end-cur">70</span>
+        <span id="lbl-end-max">/ 100</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill b-end" id="bar-end" style="width:70%"></div></div>
+      <div class="vital-nums">
+        <input type="number" id="end-cur" value="70" min="0"
+          oninput="updBarInp('end',this.value,document.getElementById('end-max').value);scheduleSave()">
+        <span>/</span>
+        <input type="number" id="end-max" value="100" min="1"
+          oninput="updBarInp('end',document.getElementById('end-cur').value,this.value);scheduleSave()">
+      </div>
+    </div>
+
+    <!-- SANTÉ MENTALE -->
+    <div class="vital-box">
+      <div class="vital-lbl">🧠 Santé Mentale</div>
+      <div class="bar-row">
+        <span id="lbl-mental">50</span>
+        <span>/ 100</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill b-mental" id="bar-mental" style="width:50%"></div></div>
+      <input type="range" id="r-mental" min="0" max="100" value="50"
+        oninput="updBar('mental',this.value,100);scheduleSave()">
+    </div>
+
+    <!-- STRESS -->
+    <div class="vital-box">
+      <div class="vital-lbl">😰 Stress</div>
+      <div class="bar-row">
+        <span id="lbl-stress">30</span>
+        <span>/ 100</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill b-stress" id="bar-stress" style="width:30%"></div></div>
+      <input type="range" id="r-stress" min="0" max="100" value="30"
+        oninput="updBar('stress',this.value,100);scheduleSave()">
     </div>
   </div>
+
+  <div class="card">
+    <div class="sec">Notes Psychologiques</div>
+    <div class="f">
+      <textarea id="psycho-notes" style="min-height:100px"
+        placeholder="Traumatismes, phobies, émotions…" oninput="scheduleSave()"></textarea>
+    </div>
+  </div>
+
   <div class="card">
     <div class="sec">Combat & Déplacement</div>
     <div class="grid-3">
@@ -224,9 +319,16 @@ input[type=range]{width:100%;margin-top:7px;accent-color:var(--gold);height:22px
       <div class="f"><label>Initiative</label><input type="number" id="v-initiative" oninput="scheduleSave()"></div>
     </div>
   </div>
+
+  <!-- IMMUNITÉS (générées dynamiquement selon Constitution) -->
+  <div class="card" id="immuno-card">
+    <div class="sec">Immunités</div>
+    <div class="immuno-hint" id="immuno-hint">Augmente ta Constitution pour débloquer des emplacements d'immunité (1 tous les 3 points).</div>
+    <div class="immuno-list" id="immuno-list"></div>
+  </div>
 </div>
 
-<!-- PAGE 2 : STATS -->
+<!-- ═══════════════════════════════════════════ PAGE 2 : STATS -->
 <div class="page" id="page-2">
   <div class="card">
     <div class="sec">Caractéristiques</div>
@@ -234,36 +336,49 @@ input[type=range]{width:100%;margin-top:7px;accent-color:var(--gold);height:22px
   </div>
 </div>
 
-<!-- PAGE 3 : PSYCHÉ -->
+<!-- ═══════════════════════════════════════════ PAGE 3 : MAGIE -->
 <div class="page" id="page-3">
   <div class="card">
-    <div class="sec">État Mental</div>
-    <div class="vital-box">
-      <div class="vital-lbl">🧠 Santé Mentale</div>
-      <div class="bar-row"><span id="lbl-mental">50</span></div>
-      <div class="bar-track"><div class="bar-fill b-mental" id="bar-mental" style="width:50%"></div></div>
-      <input type="range" id="r-mental" min="0" max="100" value="50"
-        oninput="updBar('mental',this.value,100);scheduleSave()">
-    </div>
-    <div class="vital-box">
-      <div class="vital-lbl">⚡ Stress</div>
-      <div class="bar-row"><span id="lbl-stress">30</span></div>
-      <div class="bar-track"><div class="bar-fill b-stress" id="bar-stress" style="width:30%"></div></div>
-      <input type="range" id="r-stress" min="0" max="100" value="30"
-        oninput="updBar('stress',this.value,100);scheduleSave()">
-    </div>
+    <div class="sec">⚗️ Sorts</div>
+    <div class="sort-list" id="sort-list"></div>
+    <button class="btn btn-add" style="margin-top:10px;" onclick="addSort()">+ Ajouter un sort</button>
   </div>
   <div class="card">
-    <div class="sec">Notes Psychologiques</div>
+    <div class="sec">✨ Passifs & Capacités</div>
     <div class="f">
-      <textarea id="psycho-notes" style="min-height:120px"
-        placeholder="Traumatismes, phobies, émotions…" oninput="scheduleSave()"></textarea>
+      <textarea id="passifs-notes" style="min-height:120px"
+        placeholder="Liste tes capacités passives, auras, talents spéciaux…" oninput="scheduleSave()"></textarea>
     </div>
   </div>
 </div>
 
-<!-- PAGE 4 : RICHESSE -->
+<!-- ═══════════════════════════════════════════ PAGE 4 : ÉQUIPEMENT -->
 <div class="page" id="page-4">
+  <div class="card">
+    <div class="sec">⚔️ Armes</div>
+    <div class="f">
+      <textarea id="inv-armes" style="min-height:110px"
+        placeholder="Épée longue +1, Arc court, Dague de lancer…" oninput="scheduleSave()"></textarea>
+    </div>
+  </div>
+  <div class="card">
+    <div class="sec">🛡️ Armures & Protection</div>
+    <div class="f">
+      <textarea id="inv-armures" style="min-height:100px"
+        placeholder="Cotte de mailles, Bouclier en bois…" oninput="scheduleSave()"></textarea>
+    </div>
+  </div>
+  <div class="card">
+    <div class="sec">🎒 Inventaire</div>
+    <div class="f">
+      <textarea id="inv-autre" style="min-height:140px"
+        placeholder="Torche x3, Corde, Potion de soin, Rations…" oninput="scheduleSave()"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ PAGE 5 : RICHESSE -->
+<div class="page" id="page-5">
   <div class="card">
     <div class="sec">Pièces d'Or</div>
     <div class="or-row">
@@ -274,15 +389,15 @@ input[type=range]{width:100%;margin-top:7px;accent-color:var(--gold);height:22px
   </div>
 </div>
 
-<!-- PAGE 5 : MJ -->
-<div class="page" id="page-5">
-  <div class="gm-panel" id="gm-controls">
+<!-- ═══════════════════════════════════════════ PAGE 6 : MJ -->
+<div class="page" id="page-6">
+  <div class="gm-panel-card" id="gm-controls" style="display:none;">
     <div class="sec">Panneau MJ</div>
     <button class="btn btn-danger" onclick="deleteChar()">🗑 Supprimer ce personnage</button>
   </div>
   <div class="card">
     <div class="sec">Informations MJ</div>
-    <p style="font-size:13px;color:var(--text3);font-style:italic;text-align:center;padding:10px 0;">
+    <p style="font-size:13px;color:var(--text3);font-style:italic;text-align:center;padding:10px 0;" id="gm-info-txt">
       Connecte-toi en tant que MJ depuis l'accueil pour accéder aux options.
     </p>
   </div>
@@ -295,36 +410,25 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getDatabase, ref, set, get, onValue, off }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-/* === MÊME CONFIG QUE index.html === */
 const firebaseConfig = {
-
   apiKey: "AIzaSyAlSYMROZzGvAe_PbKYtIyO_n0mJcHE8ec",
-
   authDomain: "fiche-dnd.firebaseapp.com",
-
   databaseURL: "https://fiche-dnd-default-rtdb.europe-west1.firebasedatabase.app",
-
   projectId: "fiche-dnd",
-
   storageBucket: "fiche-dnd.firebasestorage.app",
-
   messagingSenderId: "2067270488",
-
   appId: "1:2067270488:web:98e242ec19664c5292f32d"
-
 };
 const app = initializeApp(firebaseConfig);
 const db  = getDatabase(app);
 
-/* === PARAMS URL === */
 const params  = new URLSearchParams(location.search);
 const advId   = params.get('adv');
 const charId  = params.get('char');
 const isGM    = params.get('gm') === '1';
 
-/* === ÉTAT === */
-let saveTimer = null;
-let currentAdv = null;
+let saveTimer   = null;
+let currentAdv  = null;
 
 const EMOJIS = {
   Guerrier:'⚔️',Mage:'🔮','Rôdeur':'🏹',Voleur:'🗡️',Paladin:'🛡️',
@@ -333,99 +437,133 @@ const EMOJIS = {
   'Semi-orque':'💪',Tieffelin:'😈',Draconique:'🐉',Aasimar:'✨'
 };
 
-/* === TABS === */
+const STAT_NAMES = ['Force','Puissance','Dextérité','Constitution','Intelligence','Perception','Charisme','Chance','Rég. Mana'];
+
+/* ═══ TABS ═══ */
 window.switchTab = function(i){
   document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',i===j));
   document.querySelectorAll('.page').forEach((p,j)=>p.classList.toggle('active',i===j));
   window.scrollTo(0,0);
 };
 
-/* === BARS === */
-window.updBar = function(key,val,max){
-  const pct = Math.min(100, Math.max(0, Math.round(val/max*100)));
-  const bar = document.getElementById('bar-'+key);
-  const lbl = document.getElementById('lbl-'+key);
-  if(bar) bar.style.width = pct+'%';
-  if(lbl) lbl.textContent = val;
-};
-window.updBarInp = function(key,cur,max){
-  const pct = Math.min(100, Math.max(0, Math.round(Number(cur)/Math.max(1,Number(max))*100)));
-  const bar = document.getElementById('bar-'+key);
-  const lbl = document.getElementById('lbl-'+key);
-  if(bar) bar.style.width = pct+'%';
-  if(lbl) lbl.textContent = `${cur} / ${max}`;
+/* ═══ BARRES ═══ */
+window.updBar = function(key, cur, max){
+  const pct = max>0 ? Math.min(100, Math.round((cur/max)*100)) : 0;
+  const b = document.getElementById('bar-'+key);
+  const l = document.getElementById('lbl-'+key);
+  if(b) b.style.width = pct+'%';
+  if(l) l.textContent = cur;
 };
 
-/* === AVATAR === */
-window.updAvatar = function(){
-  const classe = document.getElementById('i-classe')?.value;
-  const race   = document.getElementById('i-race')?.value;
-  const emoji  = EMOJIS[classe] || EMOJIS[race] || '⚔️';
-  const el = document.getElementById('char-avatar');
-  if(el) el.textContent = emoji;
+window.updBarInp = function(key, cur, max){
+  cur = parseFloat(cur)||0;
+  max = parseFloat(max)||1;
+  const pct = Math.min(100, Math.round((cur/max)*100));
+  const b = document.getElementById('bar-'+key);
+  if(b) b.style.width = pct+'%';
+  const lc = document.getElementById('lbl-'+key+'-cur');
+  const lm = document.getElementById('lbl-'+key+'-max');
+  if(lc) lc.textContent = cur;
+  if(lm) lm.textContent = '/ '+max;
 };
 
-/* === TOAST === */
+/* ═══ AUTRE (select) ═══ */
+window.toggleAutre = function(selId, inpId){
+  const sel = document.getElementById(selId);
+  const inp = document.getElementById(inpId);
+  if(!sel||!inp) return;
+  inp.style.display = sel.value==='Autre' ? 'block' : 'none';
+};
+
+/* ═══ OR ═══ */
+window.adjOr = function(delta){
+  const el = document.getElementById('s-or');
+  el.value = Math.max(0, (parseInt(el.value)||0) + delta);
+  scheduleSave();
+};
+
+/* ═══ TOAST ═══ */
 function showToast(msg){
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 1800);
+  setTimeout(()=>t.classList.remove('show'), 2200);
 }
 
-/* === SAVE DOT === */
-function setSaving(on){
-  document.getElementById('save-dot')?.classList.toggle('saving', on);
+/* ═══ SAVE DOT ═══ */
+function setSaving(b){ document.getElementById('save-dot').classList.toggle('saving',b); }
+
+/* ═══ AVATAR ═══ */
+function updAvatar(){
+  const char = currentAdv?.chars?.find(c=>c.id===charId);
+  if(!char) return;
+  const emoji = EMOJIS[char.classe]||EMOJIS[char.race]||'⚔️';
+  document.getElementById('avatar-el').textContent = emoji;
+  document.getElementById('full-name').textContent = `${char.prenom||''} ${char.nom||''}`.trim()||'—';
+  document.getElementById('race-classe').textContent = `${char.race||'?'} · ${char.classe||'?'}`;
+  document.getElementById('char-title').textContent = `${char.prenom||''} ${char.nom||''}`.trim()||'Personnage';
+  document.getElementById('char-sub').textContent = `${char.race||''} · ${char.classe||''}`;
 }
 
-/* === LOCAL CACHE === */
-function saveAdvLocal(adv){
-  const list = JSON.parse(localStorage.getItem('dnd_adventures')||'[]');
-  const i = list.findIndex(a=>a.id===adv.id);
-  if(i>=0) list[i]=adv; else list.push(adv);
-  localStorage.setItem('dnd_adventures', JSON.stringify(list));
-}
-
-/* === FIREBASE READ/WRITE === */
-async function getAdvFull(){
-  try{
-    const snap = await get(ref(db, `adventures/${advId}`));
-    if(snap.exists()){
-      const adv = snap.val();
-      saveAdvLocal(adv);
-      return adv;
-    }
-  }catch(e){ console.warn('Firebase read failed:', e); }
-  // fallback local
-  const list = JSON.parse(localStorage.getItem('dnd_adventures')||'[]');
-  return list.find(a=>a.id===advId)||null;
-}
-
-async function saveCharData(data){
-  setSaving(true);
-  // Sauvegarde locale d'abord
-  if(currentAdv){
-    const c = currentAdv.chars.find(x=>x.id===charId);
-    if(c){ c.data = data; saveAdvLocal(currentAdv); }
+/* ═══ IMMUNITÉS ═══ */
+function buildImmunites(conVal, immunites){
+  const slots = Math.floor((conVal||10) / 3);
+  const hint  = document.getElementById('immuno-hint');
+  const list  = document.getElementById('immuno-list');
+  list.innerHTML = '';
+  if(slots === 0){
+    hint.style.display = 'block';
+    return;
   }
-  // Puis Firebase
-  try{
-    await set(ref(db, `adventures/${advId}/chars`), currentAdv.chars);
-    showToast('✦ Sauvegardé');
-  }catch(e){
-    console.warn('Firebase write failed:', e);
-    showToast('⚠ Sauvegarde locale uniquement');
+  hint.style.display = 'none';
+  for(let i=0; i<slots; i++){
+    const row = document.createElement('div');
+    row.className = 'immuno-row';
+    const val = (immunites&&immunites[i]) ? immunites[i] : '';
+    row.innerHTML = `<input type="text" placeholder="Immunité ${i+1}…" value="${val.replace(/"/g,'&quot;')}" oninput="scheduleSave()">`;
+    list.appendChild(row);
   }
-  setSaving(false);
 }
 
-/* === STATS BUILDER === */
-const STAT_NAMES = ['Force','Puissance','Dextérité','Constitution','Intelligence','Perception','Charisme','Chance'];
+function getImmunoValues(){
+  return [...document.querySelectorAll('#immuno-list .immuno-row input')].map(i=>i.value);
+}
 
+/* ═══ SORTS ═══ */
+window.addSort = function(nom='', cout=0, desc=''){
+  const list = document.getElementById('sort-list');
+  const card = document.createElement('div');
+  card.className = 'sort-card';
+  card.innerHTML = `
+    <div class="sort-head">
+      <input type="text" class="sort-name-inp" placeholder="Nom du sort…" value="${nom.replace(/"/g,'&quot;')}" oninput="scheduleSave()">
+      <div class="sort-cost-wrap">
+        <span>💧</span>
+        <input type="number" class="sort-cost-inp" placeholder="0" value="${cout}" min="0" oninput="scheduleSave()">
+      </div>
+      <button class="sort-del" onclick="this.closest('.sort-card').remove();scheduleSave()">✕</button>
+    </div>
+    <textarea class="sort-desc" placeholder="Description du sort…" oninput="scheduleSave()">${desc}</textarea>`;
+  list.appendChild(card);
+  scheduleSave();
+};
+
+function getSorts(){
+  return [...document.querySelectorAll('#sort-list .sort-card')].map(card=>{
+    const inputs = card.querySelectorAll('input');
+    return {
+      nom:  inputs[0].value,
+      cout: parseInt(inputs[1].value)||0,
+      desc: card.querySelector('textarea').value
+    };
+  });
+}
+
+/* ═══ STATS ═══ */
 function buildStats(stats, subs){
   const container = document.getElementById('stats-container');
   container.innerHTML = '';
-  STAT_NAMES.forEach(name => {
+  STAT_NAMES.forEach(name=>{
     const val  = stats[name] ?? 10;
     const list = subs[name]  ?? [];
     const block = document.createElement('div');
@@ -436,26 +574,33 @@ function buildStats(stats, subs){
         <span class="stat-name">${name}</span>
         <div class="stat-val-wrap">
           <input type="number" value="${val}" id="stat-${name}"
-            oninput="scheduleSave()" style="font-size:20px;font-weight:700;font-family:'Cinzel',serif;
-            width:54px;text-align:center;background:rgba(255,255,255,.7);border:0.5px solid var(--border);
+            oninput="onStatChange('${name}',this.value);scheduleSave()"
+            style="font-size:20px;font-weight:700;font-family:'Cinzel',serif;
+            width:58px;text-align:center;background:rgba(255,255,255,.7);border:0.5px solid var(--border);
             border-radius:6px;padding:4px 2px;color:var(--text);">
-          <button class="stat-add" onclick="addSub('${name}')">+ sous</button>
+          <button class="stat-add" onclick="addSubRow('${name}')">+ sous</button>
         </div>
       </div>
       <div class="sub-list" id="subs-${name}"></div>`;
     container.appendChild(block);
-    // sous-stats
-    list.forEach((sub,i) => addSubRow(name, sub.nom, sub.val, i));
+    list.forEach((sub)=>addSubRow(name, sub.nom, sub.val));
   });
 }
 
-function addSubRow(statName, nom='', val=0, idx=null){
+window.onStatChange = function(name, val){
+  if(name === 'Constitution'){
+    const immunites = getImmunoValues();
+    buildImmunites(parseInt(val)||0, immunites);
+  }
+};
+
+function addSubRow(statName, nom='', val=0){
   const list = document.getElementById('subs-'+statName);
   if(!list) return;
   const row = document.createElement('div');
   row.className = 'sub-row';
   row.innerHTML = `
-    <input type="text" placeholder="Sous-compétence" value="${nom}"
+    <input type="text" placeholder="Sous-compétence" value="${nom.replace(/"/g,'&quot;')}"
       style="flex:1;font-size:13px;padding:6px 9px;background:rgba(255,255,255,.5);
       border:0.5px solid var(--border);border-radius:6px;font-family:'Crimson Pro',serif;"
       oninput="scheduleSave()">
@@ -468,158 +613,204 @@ function addSubRow(statName, nom='', val=0, idx=null){
   list.appendChild(row);
 }
 
-window.addSub = function(statName){
-  addSubRow(statName);
-  scheduleSave();
-};
+window.addSub = function(statName){ addSubRow(statName); scheduleSave(); };
 
-/* === COLLECT DATA === */
+/* ═══ COLLECT DATA ═══ */
 function collectData(){
-  const stats={}, subs={};
+  const gv = id => { const e=document.getElementById(id); return e?e.value:''; };
+  const gi = id => { const e=document.getElementById(id); return e?(parseFloat(e.value)||0):0; };
+
+  // Stats
+  const stats = {};
+  const subs  = {};
   STAT_NAMES.forEach(name=>{
-    stats[name] = Number(document.getElementById('stat-'+name)?.value||10);
-    const rows = document.querySelectorAll(`#subs-${name} .sub-row`);
-    subs[name] = [...rows].map(r=>{
-      const inps = r.querySelectorAll('input');
-      return { nom: inps[0]?.value||'', val: Number(inps[1]?.value||0) };
+    stats[name] = parseInt(gv('stat-'+name))||10;
+    const subEls = document.querySelectorAll(`#subs-${name} .sub-row`);
+    subs[name] = [...subEls].map(row=>{
+      const ins = row.querySelectorAll('input');
+      return { nom: ins[0]?.value||'', val: parseInt(ins[1]?.value)||0 };
     });
   });
+
   return {
     age:       gv('i-age'),
     taille:    gv('i-taille'),
     sexe:      gv('i-sexe'),
+    sexe_autre:gv('i-sexe-autre'),
     attirance: gv('i-attirance'),
+    attirance_autre: gv('i-attirance-autre'),
     alignement:gv('i-alignement'),
     peur:      gv('i-peur'),
     desir:     gv('i-desir'),
     defaut:    gv('i-defaut'),
     maladie:   gv('i-maladie'),
     bio:       gv('i-bio'),
-    notes_psycho: gv('psycho-notes'),
-    mental:    Number(document.getElementById('r-mental')?.value||50),
-    stress:    Number(document.getElementById('r-stress')?.value||30),
-    niveau:    Number(gv('v-niveau')||1),
-    vitesse:   Number(gv('v-vitesse')||9),
-    initiative:Number(gv('v-initiative')||4),
-    hp_cur:    Number(gv('hp-cur')||0),
-    hp_max:    Number(gv('hp-max')||100),
-    mp_cur:    Number(gv('mp-cur')||0),
-    mp_max:    Number(gv('mp-max')||100),
-    end_cur:   Number(gv('end-cur')||0),
-    end_max:   Number(gv('end-max')||100),
-    or:        Number(gv('s-or')||0),
-    stats, subs
+    hp_cur:    gi('hp-cur'),  hp_max:    gi('hp-max'),
+    armure_cur:gi('armure-cur'), armure_max:gi('armure-max'),
+    mp_cur:    gi('mp-cur'),  mp_max:    gi('mp-max'),
+    end_cur:   gi('end-cur'), end_max:   gi('end-max'),
+    mental:    gi('r-mental'),
+    stress:    gi('r-stress'),
+    psycho_notes: gv('psycho-notes'),
+    niveau:    gi('v-niveau'),
+    vitesse:   gi('v-vitesse'),
+    initiative:gi('v-initiative'),
+    or:        gi('s-or'),
+    stats, subs,
+    immunites: getImmunoValues(),
+    sorts:     getSorts(),
+    passifs:   gv('passifs-notes'),
+    inv_armes: gv('inv-armes'),
+    inv_armures:gv('inv-armures'),
+    inv_autre: gv('inv-autre')
   };
 }
-function gv(id){ return document.getElementById(id)?.value ?? ''; }
 
-/* === SCHEDULE SAVE === */
+/* ═══ SCHEDULE SAVE ═══ */
 window.scheduleSave = function(){
   setSaving(true);
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(async ()=>{
-    const data = collectData();
-    // Met à jour prenom/nom/race/classe dans l'objet char aussi
-    if(currentAdv){
-      const c = currentAdv.chars.find(x=>x.id===charId);
-      if(c){
-        c.prenom  = gv('i-prenom') || c.prenom;
-        c.nom     = gv('i-nom')    || c.nom;
-        c.race    = gv('i-race')   || c.race;
-        c.classe  = gv('i-classe') || c.classe;
-        c.data    = data;
-      }
-    }
-    await saveCharData(data);
-  }, 900);
+  saveTimer = setTimeout(doSave, 900);
 };
 
-/* === OR === */
-window.adjOr = function(delta){
-  const inp = document.getElementById('s-or');
-  inp.value = Math.max(0, Number(inp.value)+delta);
-  scheduleSave();
+async function doSave(){
+  const adv = currentAdv;
+  if(!adv) return;
+  const data = collectData();
+  const idx  = adv.chars.findIndex(c=>c.id===charId);
+  if(idx<0) return;
+  adv.chars[idx].data = data;
+  // Local
+  const list = JSON.parse(localStorage.getItem('dnd_adventures')||'[]');
+  const ai   = list.findIndex(a=>a.id===advId);
+  if(ai>=0){ list[ai]=adv; localStorage.setItem('dnd_adventures',JSON.stringify(list)); }
+  // Firebase
+  try{ await set(ref(db,`adventures/${advId}`), adv); }
+  catch(e){ console.warn('save error',e); }
+  saveTimer = null;
+  setSaving(false);
 };
 
-/* === LOAD === */
+/* ═══ LOAD ═══ */
+async function getAdvFull(){
+  try{
+    const snap = await get(ref(db,`adventures/${advId}`));
+    if(snap.exists()){ const a=snap.val(); a.chars=a.chars||[]; return a; }
+  }catch(e){}
+  const local = JSON.parse(localStorage.getItem('dnd_adventures')||'[]');
+  const a = local.find(x=>x.id===advId);
+  if(a){ a.chars=a.chars||[]; return a; }
+  return null;
+}
+
 async function loadChar(){
   const adv = await getAdvFull();
   if(!adv){ alert('Aventure introuvable.'); location.href='index.html'; return; }
   currentAdv = adv;
-  const c = adv.chars.find(x=>x.id===charId);
-  if(!c){ alert('Personnage introuvable.'); location.href='index.html'; return; }
 
-  document.getElementById('char-title').textContent = `${c.prenom} ${c.nom}`;
-  document.getElementById('char-sub').textContent   = `${c.race||'Race'} · ${c.classe||'Classe'}`;
+  const char = adv.chars.find(c=>c.id===charId);
+  if(!char){ alert('Personnage introuvable.'); location.href='index.html'; return; }
 
+  // GM
   if(isGM){
-    document.getElementById('gm-badge').style.display = 'flex';
-    document.getElementById('gm-controls').style.display = 'block';
+    document.getElementById('gm-badge').style.display='flex';
+    document.getElementById('gm-controls').style.display='block';
+    document.getElementById('gm-info-txt').style.display='none';
   }
 
-  const d = c.data || {};
+  const d = char.data || {};
 
   // Identité
-  sv('i-prenom', c.prenom); sv('i-nom', c.nom);
-  setSel('i-race', c.race); setSel('i-classe', c.classe);
-  sv('i-age', d.age||'');   sv('i-taille', d.taille||'');
+  sv('i-age',      d.age||'');
+  sv('i-taille',   d.taille||'');
   setSel('i-sexe', d.sexe||'');
+  sv('i-sexe-autre', d.sexe_autre||'');
+  if(d.sexe==='Autre') document.getElementById('i-sexe-autre').style.display='block';
   setSel('i-attirance', d.attirance||'');
+  sv('i-attirance-autre', d.attirance_autre||'');
+  if(d.attirance==='Autre') document.getElementById('i-attirance-autre').style.display='block';
   setSel('i-alignement', d.alignement||'');
-  sv('i-peur', d.peur||''); sv('i-desir', d.desir||'');
-  sv('i-defaut', d.defaut||''); sv('i-maladie', d.maladie||'');
-  sv('i-bio', d.bio||'');
+  sv('i-peur',    d.peur||'');
+  sv('i-desir',   d.desir||'');
+  sv('i-defaut',  d.defaut||'');
+  sv('i-maladie', d.maladie||'');
+  sv('i-bio',     d.bio||'');
 
-  // Psyché
-  sv('psycho-notes', d.notes_psycho||'');
-  const mental = d.mental??50, stress = d.stress??30;
-  document.getElementById('r-mental').value = mental;
-  document.getElementById('r-stress').value = stress;
-  updBar('mental', mental, 100);
-  updBar('stress', stress, 100);
+  // Vitalité barres
+  sv('hp-cur',     d.hp_cur??80);     sv('hp-max',     d.hp_max??100);
+  updBarInp('hp',  d.hp_cur??80,      d.hp_max??100);
+  sv('armure-cur', d.armure_cur??0);  sv('armure-max', d.armure_max??50);
+  updBarInp('armure', d.armure_cur??0, d.armure_max??50);
+  sv('mp-cur',     d.mp_cur??60);     sv('mp-max',     d.mp_max??100);
+  updBarInp('mp',  d.mp_cur??60,      d.mp_max??100);
+  sv('end-cur',    d.end_cur??70);    sv('end-max',    d.end_max??100);
+  updBarInp('end', d.end_cur??70,     d.end_max??100);
 
-  // Vitales
-  sv('v-niveau', d.niveau||1);
-  sv('hp-cur', d.hp_cur??80); sv('hp-max', d.hp_max??100);
-  sv('mp-cur', d.mp_cur??60); sv('mp-max', d.mp_max??100);
-  sv('end-cur', d.end_cur??70); sv('end-max', d.end_max??100);
-  updBarInp('hp',  d.hp_cur??80,  d.hp_max??100);
-  updBarInp('mp',  d.mp_cur??60,  d.mp_max??100);
-  updBarInp('end', d.end_cur??70, d.end_max??100);
-  sv('v-vitesse', d.vitesse||9);
-  sv('v-initiative', d.initiative||4);
+  // Mental / Stress sliders
+  const mental = d.mental??50;
+  const stress = d.stress??30;
+  sv('r-mental', mental); updBar('mental', mental, 100);
+  sv('r-stress', stress); updBar('stress', stress, 100);
 
-  // Stats
+  // Psycho notes
+  sv('psycho-notes', d.psycho_notes||'');
+
+  // Combat
+  sv('v-niveau',    d.niveau??1);
+  sv('v-vitesse',   d.vitesse??9);
+  sv('v-initiative',d.initiative??4);
+
+  // Stats + immunités
+  const conVal = (d.stats&&d.stats['Constitution']) ?? 10;
   buildStats(d.stats||{}, d.subs||{});
+  buildImmunites(conVal, d.immunites||[]);
 
   // Or
   sv('s-or', d.or||0);
 
+  // Sorts
+  (d.sorts||[]).forEach(s=> addSort(s.nom||'', s.cout||0, s.desc||''));
+  sv('passifs-notes', d.passifs||'');
+
+  // Équipement
+  sv('inv-armes',   d.inv_armes||'');
+  sv('inv-armures', d.inv_armures||'');
+  sv('inv-autre',   d.inv_autre||'');
+
   updAvatar();
 
-  // Écoute temps réel Firebase (autres joueurs/MJ)
-  onValue(ref(db, `adventures/${advId}/chars`), snap=>{
+  // Écoute temps réel
+  onValue(ref(db,`adventures/${advId}/chars`), snap=>{
     if(!snap.exists()) return;
     const chars = snap.val();
+    if(!Array.isArray(chars)) return;
     const updated = chars.find(x=>x.id===charId);
     if(updated && currentAdv){
       currentAdv.chars = chars;
-      // Ne recharge PAS si on est en train de taper (saveTimer actif)
-      if(!saveTimer) reloadFields(updated);
+      if(!saveTimer) reloadBars(updated);
     }
   });
 }
 
-function reloadFields(c){
-  // Refresh discret des barres vitales seulement si non focus
-  const focused = document.activeElement;
+function reloadBars(c){
   const d = c.data||{};
-  if(focused?.id !== 'hp-cur' && focused?.id !== 'hp-max')
-    { sv('hp-cur',d.hp_cur??80); sv('hp-max',d.hp_max??100); updBarInp('hp',d.hp_cur??80,d.hp_max??100); }
-  if(focused?.id !== 'mp-cur' && focused?.id !== 'mp-max')
-    { sv('mp-cur',d.mp_cur??60); sv('mp-max',d.mp_max??100); updBarInp('mp',d.mp_cur??60,d.mp_max??100); }
-  if(focused?.id !== 'end-cur' && focused?.id !== 'end-max')
-    { sv('end-cur',d.end_cur??70); sv('end-max',d.end_max??100); updBarInp('end',d.end_cur??70,d.end_max??100); }
+  const focused = document.activeElement?.id;
+  if(!['hp-cur','hp-max'].includes(focused)){
+    sv('hp-cur',d.hp_cur??80); sv('hp-max',d.hp_max??100);
+    updBarInp('hp',d.hp_cur??80,d.hp_max??100);
+  }
+  if(!['armure-cur','armure-max'].includes(focused)){
+    sv('armure-cur',d.armure_cur??0); sv('armure-max',d.armure_max??50);
+    updBarInp('armure',d.armure_cur??0,d.armure_max??50);
+  }
+  if(!['mp-cur','mp-max'].includes(focused)){
+    sv('mp-cur',d.mp_cur??60); sv('mp-max',d.mp_max??100);
+    updBarInp('mp',d.mp_cur??60,d.mp_max??100);
+  }
+  if(!['end-cur','end-max'].includes(focused)){
+    sv('end-cur',d.end_cur??70); sv('end-max',d.end_max??100);
+    updBarInp('end',d.end_cur??70,d.end_max??100);
+  }
 }
 
 function sv(id,val){ const el=document.getElementById(id); if(el) el.value=val; }
@@ -628,20 +819,20 @@ function setSel(id,val){
   if(el&&val){ const o=[...el.options].find(o=>o.value===val||o.text===val); if(o) el.value=o.value; }
 }
 
-/* === GM DELETE === */
+/* ═══ GM DELETE ═══ */
 window.deleteChar = async function(){
   if(!confirm('Supprimer définitivement ce personnage ?')) return;
   const adv = await getAdvFull();
   if(!adv) return;
   adv.chars = adv.chars.filter(c=>c.id!==charId);
-  try{
-    await set(ref(db,`adventures/${advId}`), adv);
-    saveAdvLocal(adv);
-  }catch(e){ saveAdvLocal(adv); }
+  try{ await set(ref(db,`adventures/${advId}`), adv); }catch(e){}
+  const list = JSON.parse(localStorage.getItem('dnd_adventures')||'[]');
+  const ai = list.findIndex(a=>a.id===advId);
+  if(ai>=0){ list[ai]=adv; localStorage.setItem('dnd_adventures',JSON.stringify(list)); }
   location.href='index.html';
 };
 
-/* === INIT === */
+/* ═══ INIT ═══ */
 if(!advId||!charId){ alert('Lien invalide.'); location.href='index.html'; }
 else loadChar();
 </script>
