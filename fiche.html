@@ -670,26 +670,38 @@ function collectData(){
 window.scheduleSave = function(){
   setSaving(true);
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(doSave, 900);
+  saveTimer = setTimeout(doSave, 1200);
 };
+
 
 async function doSave(){
   const adv = currentAdv;
   if(!adv) return;
   const data = collectData();
   const idx  = adv.chars.findIndex(c=>c.id===charId);
-  if(idx<0) return;
+  if(idx<0){ setSaving(false); return; }
   adv.chars[idx].data = data;
+
   // Local
-  const list = JSON.parse(localStorage.getItem('dnd_adventures')||'[]');
-  const ai   = list.findIndex(a=>a.id===advId);
-  if(ai>=0){ list[ai]=adv; localStorage.setItem('dnd_adventures',JSON.stringify(list)); }
+  try{
+    const list = JSON.parse(localStorage.getItem('dnd_adventures')||'[]');
+    const ai   = list.findIndex(a=>a.id===advId);
+    if(ai>=0){ list[ai]=adv; localStorage.setItem('dnd_adventures',JSON.stringify(list)); }
+  }catch(e){ console.warn('local save error',e); }
+
   // Firebase
-  try{ await set(ref(db,`adventures/${advId}`), adv); }
-  catch(e){ console.warn('save error',e); }
+  try{
+    await set(ref(db,`adventures/${advId}`), adv);
+    showToast('✓ Modifications sauvegardées');
+  }catch(e){
+    console.warn('firebase save error',e);
+    showToast('⚠️ Erreur de sauvegarde');
+  }
+
   saveTimer = null;
   setSaving(false);
-};
+}
+
 
 /* ═══ LOAD ═══ */
 async function getAdvFull(){
