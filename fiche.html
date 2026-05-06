@@ -624,13 +624,15 @@ function collectData(){
   const stats = {};
   const subs  = {};
   STAT_NAMES.forEach(name=>{
-    stats[name] = parseInt(gv('stat-'+name))||10;
+    const key = name.replace(/\./g,'__dot__');
+    stats[key] = parseInt(gv('stat-'+name))||10;
     const subEls = document.getElementById(`subs-${name}`)?.querySelectorAll('.sub-row') || [];
-    subs[name] = [...subEls].map(row=>{
+    subs[key] = [...subEls].map(row=>{
       const ins = row.querySelectorAll('input');
       return { nom: ins[0]?.value||'', val: parseInt(ins[1]?.value)||0 };
     });
   });
+
 
   return {
     age:       gv('i-age'),

@@ -294,8 +294,22 @@ function normalizeChar(c){
   c.data.subs  = Object.assign({}, def.subs,  c.data.subs||{});
   if(!Array.isArray(c.data.immunites)) c.data.immunites=[];
   if(!Array.isArray(c.data.sorts))     c.data.sorts=[];
+
+  // Décoder les clés encodées (ex: Rég__dot__Mana -> Rég. Mana)
+  const decodeStats = {};
+  const decodeSubs  = {};
+  Object.entries(c.data.stats).forEach(([k,v])=>{
+    decodeStats[k.replace(/__dot__/g,'.')] = v;
+  });
+  Object.entries(c.data.subs).forEach(([k,v])=>{
+    decodeSubs[k.replace(/__dot__/g,'.')] = v;
+  });
+  c.data.stats = decodeStats;
+  c.data.subs  = decodeSubs;
+
   return c;
 }
+
 
 function normalizeAdv(adv){
   if(!adv) return adv;
