@@ -625,7 +625,7 @@ function collectData(){
   const subs  = {};
   STAT_NAMES.forEach(name=>{
     stats[name] = parseInt(gv('stat-'+name))||10;
-    const subEls = document.getElementById(`subs-${statName}`)?.querySelectorAll('.sub-row') || [];
+    const subEls = document.getElementById(`subs-${name}`)?.querySelectorAll('.sub-row') || [];
     subs[name] = [...subEls].map(row=>{
       const ins = row.querySelectorAll('input');
       return { nom: ins[0]?.value||'', val: parseInt(ins[1]?.value)||0 };
