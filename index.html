@@ -396,6 +396,7 @@ function renderAdventureWith(adv){
     const hpPct  = Math.round((d.hp_cur??80)/(d.hp_max||100)*100);
     const mpPct  = Math.round((d.mp_cur??60)/(d.mp_max||100)*100);
     const endPct = Math.round((d.end_cur??70)/(d.end_max||100)*100);
+    const armurePct = Math.round((d.armure_cur??0)/(d.armure_max||20)*100);
 
     // Immunités
     const imms = (d.immunites||[]).filter(x=>x&&x.trim());
