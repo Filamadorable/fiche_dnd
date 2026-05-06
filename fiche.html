@@ -594,8 +594,8 @@ window.onStatChange = function(name, val){
   }
 };
 
-function addSubRow(statName, nom='', val=0){
-  const list = document.getElementById('subs-'+statName);
+function addSubRow(name, nom='', val=0){
+  const list = document.getElementById('subs-'+name);
   if(!list) return;
   const row = document.createElement('div');
   row.className = 'sub-row';
@@ -613,7 +613,7 @@ function addSubRow(statName, nom='', val=0){
   list.appendChild(row);
 }
 
-window.addSub = function(statName){ addSubRow(statName); scheduleSave(); };
+window.addSub = function(name){ addSubRow(name); scheduleSave(); };
 
 /* ═══ COLLECT DATA ═══ */
 function collectData(){
