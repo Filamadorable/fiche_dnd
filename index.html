@@ -414,9 +414,14 @@ function renderAdventureWith(adv){
       </div>
       <div class="char-stats-preview">
         <div class="csp-item">
-          <div class="csp-val">${d.hp_cur??80}</div>
-          <div class="csp-lbl">PV</div>
-          <div class="csp-bar"><div class="csp-bar-fill" style="width:${hpPct}%;background:#5dcaa5;"></div></div>
+          <div class="csp-val">${d.hp_cur??80}<span style="font-size:9px;color:#a0aec0;margin-left:2px;">+${d.armure_cur??0}</span></div>
+          <div class="csp-lbl">PV / ARM</div>
+          <div class="csp-bar">
+            <div class="csp-bar-fill" style="width:${hpPct}%;background:#5dcaa5;"></div>
+          </div>
+          <div class="csp-bar" style="margin-top:2px;">
+            <div class="csp-bar-fill" style="width:${armurePct}%;background:#a0aec0;"></div>
+          </div>
         </div>
         <div class="csp-item">
           <div class="csp-val">${d.mp_cur??60}</div>
