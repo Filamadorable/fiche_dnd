@@ -71,6 +71,8 @@ input[type=range]{width:100%;margin-top:8px;accent-color:var(--gold);height:22px
 .vital-nums{display:flex;align-items:center;gap:7px;margin-top:9px;}
 .vital-nums span{font-size:12px;color:var(--text3);font-weight:600;}
 .vital-nums input{flex:1;font-size:15px;font-weight:700;font-family:'Cinzel',serif;text-align:center;padding:6px 4px;background:rgba(255,255,255,.7);border:0.5px solid var(--border);border-radius:6px;color:var(--text);}
+.vital-box.compact { padding: 8px 12px; }
+.compact-nums input { width: 60px; padding: 4px 6px; font-size: 0.85rem; }
 
 /* STATS */
 .stat-block{background:rgba(255,255,255,0.38);border:0.5px solid var(--border);border-radius:8px;padding:11px 12px;margin-bottom:8px;}
@@ -211,75 +213,83 @@ input[type=range]{width:100%;margin-top:8px;accent-color:var(--gold);height:22px
     <div class="sec">Points Vitaux</div>
 
     <!-- PV -->
-    <div class="vital-box">
+    <div class="vital-box compact">
       <div class="vital-lbl">❤️ Points de Vie</div>
       <div class="bar-row">
         <span id="lbl-hp-cur">80</span>
         <span id="lbl-hp-max">/ 100</span>
       </div>
       <div class="bar-track"><div class="bar-fill b-hp" id="bar-hp" style="width:80%"></div></div>
-      <div class="vital-nums">
+      <div class="vital-nums compact-nums">
         <input type="number" id="hp-cur" value="80" min="0"
           oninput="updBarInp('hp',this.value,document.getElementById('hp-max').value);scheduleSave()">
         <span>/</span>
         <input type="number" id="hp-max" value="100" min="1"
           oninput="updBarInp('hp',document.getElementById('hp-cur').value,this.value);scheduleSave()">
       </div>
+      <input type="range" id="r-hp" min="0" max="100" value="80"
+        oninput="updBarInp('hp',this.value,document.getElementById('hp-max').value);scheduleSave()">
     </div>
 
     <!-- ARMURE -->
-    <div class="vital-box">
+    <div class="vital-box compact">
       <div class="vital-lbl">🛡️ Armure</div>
       <div class="bar-row">
         <span id="lbl-armure-cur">0</span>
         <span id="lbl-armure-max">/ 50</span>
       </div>
       <div class="bar-track"><div class="bar-fill b-armure" id="bar-armure" style="width:0%"></div></div>
-      <div class="vital-nums">
+      <div class="vital-nums compact-nums">
         <input type="number" id="armure-cur" value="0" min="0"
           oninput="updBarInp('armure',this.value,document.getElementById('armure-max').value);scheduleSave()">
         <span>/</span>
         <input type="number" id="armure-max" value="50" min="1"
           oninput="updBarInp('armure',document.getElementById('armure-cur').value,this.value);scheduleSave()">
       </div>
+      <input type="range" id="r-armure" min="0" max="100" value="0"
+        oninput="updBarInp('armure',this.value,document.getElementById('armure-max').value);scheduleSave()">
     </div>
 
     <!-- MANA -->
-    <div class="vital-box">
+    <div class="vital-box compact">
       <div class="vital-lbl">💧 Mana</div>
       <div class="bar-row">
         <span id="lbl-mp-cur">60</span>
         <span id="lbl-mp-max">/ 100</span>
       </div>
       <div class="bar-track"><div class="bar-fill b-mp" id="bar-mp" style="width:60%"></div></div>
-      <div class="vital-nums">
+      <div class="vital-nums compact-nums">
         <input type="number" id="mp-cur" value="60" min="0"
           oninput="updBarInp('mp',this.value,document.getElementById('mp-max').value);scheduleSave()">
         <span>/</span>
         <input type="number" id="mp-max" value="100" min="1"
           oninput="updBarInp('mp',document.getElementById('mp-cur').value,this.value);scheduleSave()">
       </div>
+      <input type="range" id="r-mp" min="0" max="100" value="60"
+        oninput="updBarInp('mp',this.value,document.getElementById('mp-max').value);scheduleSave()">
     </div>
 
     <!-- ENDURANCE -->
-    <div class="vital-box">
+    <div class="vital-box compact">
       <div class="vital-lbl">⚡ Endurance</div>
       <div class="bar-row">
         <span id="lbl-end-cur">70</span>
         <span id="lbl-end-max">/ 100</span>
       </div>
       <div class="bar-track"><div class="bar-fill b-end" id="bar-end" style="width:70%"></div></div>
-      <div class="vital-nums">
+      <div class="vital-nums compact-nums">
         <input type="number" id="end-cur" value="70" min="0"
           oninput="updBarInp('end',this.value,document.getElementById('end-max').value);scheduleSave()">
         <span>/</span>
         <input type="number" id="end-max" value="100" min="1"
           oninput="updBarInp('end',document.getElementById('end-cur').value,this.value);scheduleSave()">
       </div>
+      <input type="range" id="r-end" min="0" max="100" value="70"
+        oninput="updBarInp('end',this.value,document.getElementById('end-max').value);scheduleSave()">
     </div>
 
     <!-- SANTÉ MENTALE -->
-    <div class="vital-box">
+    <div class="vital-box compact">
       <div class="vital-lbl">🧠 Santé Mentale</div>
       <div class="bar-row">
         <span id="lbl-mental">50</span>
@@ -288,18 +298,6 @@ input[type=range]{width:100%;margin-top:8px;accent-color:var(--gold);height:22px
       <div class="bar-track"><div class="bar-fill b-mental" id="bar-mental" style="width:50%"></div></div>
       <input type="range" id="r-mental" min="0" max="100" value="50"
         oninput="updBar('mental',this.value,100);scheduleSave()">
-    </div>
-
-    <!-- STRESS -->
-    <div class="vital-box">
-      <div class="vital-lbl">😰 Stress</div>
-      <div class="bar-row">
-        <span id="lbl-stress">30</span>
-        <span>/ 100</span>
-      </div>
-      <div class="bar-track"><div class="bar-fill b-stress" id="bar-stress" style="width:30%"></div></div>
-      <input type="range" id="r-stress" min="0" max="100" value="30"
-        oninput="updBar('stress',this.value,100);scheduleSave()">
     </div>
   </div>
 
@@ -320,13 +318,14 @@ input[type=range]{width:100%;margin-top:8px;accent-color:var(--gold);height:22px
     </div>
   </div>
 
-  <!-- IMMUNITÉS (générées dynamiquement selon Constitution) -->
+  <!-- IMMUNITÉS -->
   <div class="card" id="immuno-card">
     <div class="sec">Immunités</div>
     <div class="immuno-hint" id="immuno-hint">Augmente ta Constitution pour débloquer des emplacements d'immunité (1 tous les 3 points).</div>
     <div class="immuno-list" id="immuno-list"></div>
   </div>
 </div>
+
 
 <!-- ═══════════════════════════════════════════ PAGE 2 : STATS -->
 <div class="page" id="page-2">
@@ -465,7 +464,11 @@ window.updBarInp = function(key, cur, max){
   const lm = document.getElementById('lbl-'+key+'-max');
   if(lc) lc.textContent = cur;
   if(lm) lm.textContent = '/ '+max;
+  // sync slider
+  const slider = document.getElementById('r-'+key);
+  if(slider){ slider.max = max; slider.value = cur; }
 };
+
 
 /* ═══ AUTRE (select) ═══ */
 window.toggleAutre = function(selId, inpId){
